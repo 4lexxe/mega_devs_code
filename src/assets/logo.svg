@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="100%" stop-color="#00a8e8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Fox/Cat Head Contour -->
+  <g transform="translate(0, 0)">
+    <!-- Ears Outlines -->
+    <path d="M120 180 L200 80 L250 160 L300 80 L380 180 L420 280 L350 300 L380 340 L300 370 L250 420 L200 370 L120 340 L150 300 L80 280 Z" fill="#0b132b" stroke="#00f0ff" stroke-width="12" stroke-linejoin="round" />
+    
+    <!-- Ears Inner Cyan -->
+    <path d="M140 185 L195 105 L235 170 Z" fill="url(#cyanGrad)" />
+    <path d="M360 185 L305 105 L265 170 Z" fill="url(#cyanGrad)" />
+    
+    <!-- Forehead Peak Cyan -->
+    <polygon points="250,130 210,180 290,180" fill="url(#cyanGrad)" />
+
+    <!-- Dark Eye Mask -->
+    <path d="M135 250 L250 200 L365 250 L395 290 L340 310 L350 335 L290 355 L250 380 L210 355 L150 335 L160 310 L105 290 Z" fill="#090d16" stroke="#00f0ff" stroke-width="8" />
+
+    <!-- Eyes (Sleek White Slits) -->
+    <path d="M165 270 Q215 255 240 280 Q200 315 165 270 Z" fill="#ffffff" stroke="#00f0ff" stroke-width="4" />
+    <path d="M335 270 Q285 255 260 280 Q300 315 335 270 Z" fill="#ffffff" stroke="#00f0ff" stroke-width="4" />
+
+    <!-- Nose Triangle -->
+    <polygon points="250,335 238,318 262,318" fill="url(#cyanGrad)" />
+
+    <!-- Cheek Whiskers / Accents Cyan -->
+    <path d="M130 330 L170 345 L155 355 Z" fill="url(#cyanGrad)" />
+    <path d="M120 355 L160 370 L145 380 Z" fill="url(#cyanGrad)" />
+    
+    <path d="M370 330 L330 345 L345 355 Z" fill="url(#cyanGrad)" />
+    <path d="M380 355 L340 370 L355 380 Z" fill="url(#cyanGrad)" />
+  </g>
+</svg>

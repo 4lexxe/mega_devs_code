@@ -1,0 +1,13 @@
+# Render Cloud Infrastructure Blueprint Configuration
+services:
+  - type: web
+    name: mega-devs-judge
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: NODE_ENV
+        value: production
