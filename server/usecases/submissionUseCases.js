@@ -88,6 +88,18 @@ function executeJavaCode(code, inputStr, auxFile = null) {
     };
 }
 
+let cachedPyCmd = null;
+function getPythonCmd() {
+    if (cachedPyCmd) return cachedPyCmd;
+    try {
+        execSync('python3 --version', { stdio: 'ignore' });
+        cachedPyCmd = 'python3';
+    } catch (e) {
+        cachedPyCmd = 'python';
+    }
+    return cachedPyCmd;
+}
+
 function executePythonCode(code, inputStr) {
     const startTime = Date.now();
     const runId = 'run_py_' + Math.random().toString(36).substring(2, 9);
@@ -105,7 +117,8 @@ function executePythonCode(code, inputStr) {
     let errorMsg = null;
 
     try {
-        const execOutput = execSync(`python solution.py < input.txt`, {
+        const pyCmd = getPythonCmd();
+        const execOutput = execSync(`${pyCmd} solution.py < input.txt`, {
             cwd: runDir,
             timeout: 6000,
             encoding: 'utf-8',

@@ -1,8 +1,8 @@
 # MEGA DEVS - Full-Stack Production Container (Node.js 20 + OpenJDK 17)
 FROM node:20-alpine
 
-# Install OpenJDK 17 for javac / java execution in Cloud Juez Engine
-RUN apk add --no-cache openjdk17-jdk bash
+# Install OpenJDK 17 & Python 3 for Java/Python execution in Cloud Juez Engine
+RUN apk add --no-cache openjdk17-jdk bash python3
 
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 ENV PATH="${PATH}:${JAVA_HOME}/bin"
