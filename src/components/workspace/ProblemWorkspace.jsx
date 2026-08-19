@@ -3,7 +3,7 @@ import { MarkdownLatexRenderer } from '../common/MarkdownLatexRenderer';
 import { CodeEditor } from './CodeEditor';
 import { JudgeConsole } from './JudgeConsole';
 
-export const ProblemWorkspace = ({ problem, onBack, onRunCode, onSubmitCode, evalResults, isEvaluating }) => {
+export const ProblemWorkspace = ({ problem, onBack, onRunCode, onSubmitCode, evalResults, isEvaluating, theme = 'dark' }) => {
     const [activeTab, setActiveTab] = useState('statement');
     const [code, setCode] = useState(problem ? problem.starterCode : '');
     const [customInput, setCustomInput] = useState(problem && problem.examples ? problem.examples[0].input : '');
@@ -94,17 +94,20 @@ export const ProblemWorkspace = ({ problem, onBack, onRunCode, onSubmitCode, eva
     return (
         <div className="view-page workspace-mode">
             {/* Top Workspace Header */}
-            <div className="workspace-top-bar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.4rem 1rem', background: 'var(--bg-surface)', borderBottom: '1px solid var(--border-color)', minHeight: '52px', flexWrap: 'wrap', gap: '0.5rem' }}>
-                <button className="btn-devs btn-devs-secondary" onClick={onBack} style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}>
-                    <i className="icon-left-open" />
-                    <span>Volver</span>
-                </button>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                    <h2 style={{ fontSize: '1rem', fontFamily: 'var(--font-straight)', margin: 0 }}>{problem.id} - {problem.title}</h2>
-                    <span className={`badge-diff ${problem.difficulty}`}>{problem.difficulty}</span>
-                </div>
-                <div style={{ background: 'var(--bg-surface-elevated)', padding: '0.3rem 0.6rem', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700, color: isPythonProblem ? '#38bdf8' : 'var(--brand-java)', border: '1px solid var(--border-color)' }}>
-                    {isPythonProblem ? 'Python 3.14' : 'Java 17'}
+            <div className="workspace-top-bar">
+                <div className="workspace-top-row">
+                    <button className="btn-devs btn-devs-secondary btn-back-mobile" onClick={onBack}>
+                        <i className="icon-left-open" />
+                        <span>Volver</span>
+                    </button>
+                    <div className="workspace-title-group">
+                        <h2 className="workspace-problem-title">{problem.id} - {problem.title}</h2>
+                        <span className={`badge-diff ${problem.difficulty}`}>{problem.difficulty}</span>
+                    </div>
+                    <div className="workspace-lang-badge" style={{ color: isPythonProblem ? '#00f0ff' : '#f59e0b' }}>
+                        <i className={isPythonProblem ? "icon-code" : "icon-doc-text"} />
+                        <span>{isPythonProblem ? 'Python 3' : 'Java 17'}</span>
+                    </div>
                 </div>
             </div>
 
@@ -258,6 +261,7 @@ export const ProblemWorkspace = ({ problem, onBack, onRunCode, onSubmitCode, eva
                                 onResetCode={() => setCode(problem.starterCode)}
                                 onFormatCode={() => setCode(code)}
                                 language={isPythonProblem ? 'python' : 'java'}
+                                theme={theme}
                             />
                         </div>
 

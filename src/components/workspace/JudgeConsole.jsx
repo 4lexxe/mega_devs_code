@@ -88,13 +88,13 @@ export const JudgeConsole = ({
     return (
         <div className="console-drawer-bottom">
             <div className="console-bar">
-                <div style={{ display: 'flex', gap: '0.25rem' }}>
+                <div className="console-tabs-group">
                     <button
                         className={`sub-tab-btn ${activeTab === 'results' ? 'active' : ''}`}
                         onClick={() => setActiveTab('results')}
                     >
                         <i className="icon-code" style={{ marginRight: '0.4rem' }} />
-                        <span>Resultado de Evaluación</span>
+                        <span>Resultado</span>
                     </button>
                     <button
                         className={`sub-tab-btn ${activeTab === 'custom' ? 'active' : ''}`}
@@ -105,38 +105,38 @@ export const JudgeConsole = ({
                     </button>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.6rem' }}>
-                    <button className="btn-devs btn-devs-secondary" onClick={() => { setActiveTab('custom'); onRunCode(); }}>
+                <div className="console-actions-group">
+                    <button className="btn-devs btn-devs-secondary btn-action-mobile" onClick={() => { setActiveTab('custom'); onRunCode(); }}>
                         <i className="icon-play" />
                         <span>Ejecutar Prueba</span>
                     </button>
-                    <button className="btn-devs btn-devs-primary" onClick={() => { setActiveTab('results'); onSubmitCode(); }} disabled={isEvaluating}>
+                    <button className="btn-devs btn-devs-primary btn-action-mobile" onClick={() => { setActiveTab('results'); onSubmitCode(); }} disabled={isEvaluating}>
                         <i className="icon-ok-circled" />
                         <span>{isEvaluating ? 'Evaluando...' : 'Enviar Solución'}</span>
                     </button>
                 </div>
             </div>
 
-            <div style={{ flex: 1, overflowY: 'auto', padding: '1rem' }}>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '0.75rem' }}>
                 {activeTab === 'results' && renderResults()}
 
                 {activeTab === 'custom' && (
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', height: '100%' }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                            <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)' }}>Entrada Estándar (System.in):</label>
+                    <div className="custom-io-grid">
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', minHeight: '120px' }}>
+                            <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)' }}>Entrada Estándar (System.in / sys.stdin):</label>
                             <textarea
                                 value={customInput}
                                 onChange={(e) => setCustomInput(e.target.value)}
-                                style={{ flex: 1, background: 'var(--bg-dark)', border: '1px solid var(--border-color)', borderRadius: '6px', color: '#fff', fontFamily: 'var(--font-code)', fontSize: '0.82rem', padding: '0.5rem', resize: 'none', outline: 'none' }}
+                                style={{ flex: 1, minHeight: '100px', background: 'var(--bg-dark)', border: '1px solid var(--border-color)', borderRadius: '6px', color: 'var(--text-main)', fontFamily: 'var(--font-code)', fontSize: '0.82rem', padding: '0.5rem', resize: 'none', outline: 'none' }}
                                 placeholder="Escribe aquí los datos de entrada..."
                             />
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                            <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)' }}>Salida Generada (System.out):</label>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', minHeight: '120px' }}>
+                            <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)' }}>Salida Generada (System.out / print):</label>
                             <textarea
                                 readOnly
                                 value={customOutput}
-                                style={{ flex: 1, background: 'var(--bg-dark)', border: '1px solid var(--border-color)', borderRadius: '6px', color: '#fff', fontFamily: 'var(--font-code)', fontSize: '0.82rem', padding: '0.5rem', resize: 'none', outline: 'none' }}
+                                style={{ flex: 1, minHeight: '100px', background: 'var(--bg-dark)', border: '1px solid var(--border-color)', borderRadius: '6px', color: 'var(--text-main)', fontFamily: 'var(--font-code)', fontSize: '0.82rem', padding: '0.5rem', resize: 'none', outline: 'none' }}
                                 placeholder="La salida de tu programa aparecerá aquí..."
                             />
                         </div>

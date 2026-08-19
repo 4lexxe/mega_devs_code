@@ -199,6 +199,7 @@ export function App() {
                         onSubmitCode={handleSubmitSolution}
                         evalResults={evalResults}
                         isEvaluating={isEvaluating}
+                        theme={theme}
                     />
                 )}
 

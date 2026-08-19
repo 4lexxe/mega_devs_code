@@ -822,6 +822,185 @@ h1, h2, h3, h4, h5, h6 {
 .icon-copy:before { content: "\f0c5"; }
 
 /* ==========================================================================
+   Hacker Cyan / Celeste Design System & Cyber Aesthetics
+   ========================================================================== */
+
+.hacker-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #00f0ff;
+    box-shadow: 0 0 10px #00f0ff, 0 0 4px #00f0ff;
+    animation: hackerPulse 2s infinite ease-in-out;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+@keyframes hackerPulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px #00f0ff, 0 0 4px #00f0ff; }
+    50% { opacity: 0.45; transform: scale(0.85); box-shadow: 0 0 4px #00f0ff; }
+}
+
+.hacker-cyber-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: var(--font-code);
+    background: rgba(0, 240, 255, 0.08);
+    color: var(--brand-cyan);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    letter-spacing: 0.3px;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.1);
+}
+
+[data-theme="light"] .hacker-status-dot {
+    background-color: #0284c7;
+    box-shadow: 0 0 8px #0284c7;
+}
+
+[data-theme="light"] .hacker-cyber-badge {
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284c7;
+    border-color: rgba(2, 132, 199, 0.3);
+}
+
+.workspace-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    min-height: 52px;
+    gap: 0.75rem;
+}
+
+.workspace-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.75rem;
+}
+
+.workspace-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    flex: 1;
+}
+
+.workspace-problem-title {
+    font-size: 1rem;
+    font-family: var(--font-straight);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.workspace-lang-badge {
+    background: var(--bg-surface-elevated);
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+}
+
+.editor-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.8rem;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    min-height: 40px;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.editor-topbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #00f0ff 0%, transparent 80%);
+    opacity: 0.6;
+}
+
+.editor-action-tools {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.editor-action-tools .icon-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+.editor-action-tools .icon-btn:hover {
+    background: var(--bg-surface-elevated);
+    color: var(--brand-cyan);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+}
+
+.console-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.8rem;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.console-tabs-group {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+.console-actions-group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.custom-io-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    height: 100%;
+}
+
+/* ==========================================================================
    Mobile & Tablet Responsive System (Cell Phones & Touch Devices)
    ========================================================================== */
 
@@ -952,5 +1131,73 @@ h1, h2, h3, h4, h5, h6 {
         background: var(--bg-surface);
         color: var(--brand-cyan);
         border-color: var(--border-color);
+    }
+
+    .workspace-top-bar {
+        padding: 0.5rem 0.6rem;
+    }
+
+    .workspace-top-row {
+        flex-wrap: wrap;
+    }
+
+    .workspace-problem-title {
+        font-size: 0.88rem;
+    }
+
+    .btn-back-mobile {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.78rem;
+    }
+
+    .editor-topbar {
+        padding: 0.4rem 0.5rem;
+    }
+
+    .editor-action-tools {
+        gap: 0.15rem;
+    }
+
+    .editor-action-tools .icon-btn {
+        padding: 0.35rem;
+        min-width: 34px;
+        min-height: 34px;
+    }
+
+    .console-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        padding: 0.5rem 0.6rem;
+    }
+
+    .console-tabs-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .console-tabs-group .sub-tab-btn {
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+        padding: 0.4rem 0.3rem;
+        font-size: 0.78rem;
+    }
+
+    .console-actions-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .btn-action-mobile {
+        flex: 1;
+        justify-content: center;
+        padding: 0.5rem 0.4rem;
+        font-size: 0.8rem;
+    }
+
+    .custom-io-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem;
     }
 }

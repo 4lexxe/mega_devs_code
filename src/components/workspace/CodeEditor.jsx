@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import Editor from '@monaco-editor/react';
 
-export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode, language = 'java' }) => {
+export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode, language = 'java', theme = 'dark' }) => {
     const editorRef = useRef(null);
     const [editorLoaded, setEditorLoaded] = useState(false);
 
@@ -10,6 +10,66 @@ export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode, language 
     const handleEditorDidMount = (editor, monaco) => {
         editorRef.current = editor;
         setEditorLoaded(true);
+
+        // Define Hacker Cyan Celeste Dark Theme
+        monaco.editor.defineTheme('hacker-cyan-dark', {
+            base: 'vs-dark',
+            inherit: true,
+            rules: [
+                { token: 'keyword', foreground: '00f0ff', fontStyle: 'bold' },
+                { token: 'keyword.java', foreground: '00e5ff', fontStyle: 'bold' },
+                { token: 'keyword.python', foreground: '00e5ff', fontStyle: 'bold' },
+                { token: 'type', foreground: '38bdf8', fontStyle: 'bold' },
+                { token: 'identifier', foreground: 'e2e8f0' },
+                { token: 'string', foreground: '00ff9d' },
+                { token: 'number', foreground: '7dd3fc' },
+                { token: 'comment', foreground: '475569', fontStyle: 'italic' },
+                { token: 'delimiter', foreground: '38bdf8' },
+                { token: 'operator', foreground: '00e5ff' }
+            ],
+            colors: {
+                'editor.background': '#090d16',
+                'editor.foreground': '#e2e8f0',
+                'editor.lineHighlightBackground': '#131c2e',
+                'editorCursor.foreground': '#00f0ff',
+                'editorLineNumber.foreground': '#2563eb',
+                'editorLineNumber.activeForeground': '#00f0ff',
+                'editorSelection.background': '#00f0ff33',
+                'editor.selectionHighlightBackground': '#00f0ff22',
+                'editorIndentGuide.background': '#1e293b',
+                'editorIndentGuide.activeBackground': '#38bdf8'
+            }
+        });
+
+        // Define Hacker Cyan Celeste Light Theme
+        monaco.editor.defineTheme('hacker-cyan-light', {
+            base: 'vs',
+            inherit: true,
+            rules: [
+                { token: 'keyword', foreground: '0284c7', fontStyle: 'bold' },
+                { token: 'type', foreground: '0369a1', fontStyle: 'bold' },
+                { token: 'identifier', foreground: '0f172a' },
+                { token: 'string', foreground: '059669' },
+                { token: 'number', foreground: '0284c7' },
+                { token: 'comment', foreground: '64748b', fontStyle: 'italic' },
+                { token: 'delimiter', foreground: '0284c7' },
+                { token: 'operator', foreground: '0284c7' }
+            ],
+            colors: {
+                'editor.background': '#f0f7ff',
+                'editor.foreground': '#0f172a',
+                'editor.lineHighlightBackground': '#e0f2fe',
+                'editorCursor.foreground': '#0284c7',
+                'editorLineNumber.foreground': '#94a3b8',
+                'editorLineNumber.activeForeground': '#0284c7',
+                'editorSelection.background': '#38bdf833',
+                'editorIndentGuide.background': '#cbd5e1',
+                'editorIndentGuide.activeBackground': '#0284c7'
+            }
+        });
+
+        // Set active theme dynamically
+        monaco.editor.setTheme(theme === 'light' ? 'hacker-cyan-light' : 'hacker-cyan-dark');
 
         // Register custom Python completion suggestions
         monaco.languages.registerCompletionItemProvider('python', {
@@ -203,11 +263,12 @@ export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode, language 
     return (
         <div ref={containerRef} style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden', background: 'var(--bg-surface)' }}>
             <div className="editor-topbar">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'var(--font-code)', fontSize: '0.85rem', color: isPython ? '#38bdf8' : 'var(--brand-java)' }}>
-                    <i className={isPython ? "icon-code" : "icon-doc-text"} />
-                    <span>{isPython ? 'solution.py' : 'Main.java'}</span>
-                    <span style={{ fontSize: '0.72rem', background: 'var(--bg-surface-elevated)', color: 'var(--text-muted)', border: '1px solid var(--border-color)', padding: '0.1rem 0.5rem', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}>
-                        <i className="icon-magic" style={{ fontSize: '0.7rem' }} /> Autocompletado Activo ({isPython ? 'Python' : 'Java'})
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-code)', fontSize: '0.82rem', flexWrap: 'wrap' }}>
+                    <span className="hacker-status-dot" title="Cyber IDE Activo" />
+                    <i className={isPython ? "icon-code" : "icon-doc-text"} style={{ color: 'var(--brand-cyan)' }} />
+                    <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>{isPython ? 'solution.py' : 'Main.java'}</span>
+                    <span className="hacker-cyber-badge">
+                        <i className="icon-magic" style={{ fontSize: '0.68rem', color: '#00f0ff' }} /> Hacker IDE ({isPython ? 'Python 3' : 'Java 17'})
                     </span>
                     {copiedToast && (
                         <span style={{ fontSize: '0.72rem', background: 'rgba(16, 185, 129, 0.2)', color: '#10b981', border: '1px solid rgba(16, 185, 129, 0.4)', padding: '0.1rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>
@@ -217,33 +278,33 @@ export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode, language 
                 </div>
 
                 {/* OC Editor Enhanced Toolbar */}
-                <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center' }}>
-                    <button className="icon-btn" title="Copiar Código al Portapapeles" onClick={handleCopyCode} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                <div className="editor-action-tools">
+                    <button className="icon-btn" title="Copiar Código" onClick={handleCopyCode}>
                         <i className="icon-docs" />
                     </button>
-                    <button className="icon-btn" title="Deshacer (Ctrl+Z)" onClick={handleUndo} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                    <button className="icon-btn" title="Deshacer (Ctrl+Z)" onClick={handleUndo}>
                         <i className="icon-reply" />
                     </button>
-                    <button className="icon-btn" title="Rehacer (Ctrl+Y)" onClick={handleRedo} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                    <button className="icon-btn" title="Rehacer (Ctrl+Y)" onClick={handleRedo}>
                         <i className="icon-forward" />
                     </button>
-                    <button className="icon-btn" title="Pantalla Completa" onClick={toggleFullscreen} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                    <button className="icon-btn" title="Pantalla Completa" onClick={toggleFullscreen}>
                         <i className="icon-resize-full" />
                     </button>
-                    <button className="icon-btn" title="Restablecer plantilla inicial" onClick={onResetCode} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                    <button className="icon-btn" title="Restablecer código inicial" onClick={onResetCode}>
                         <i className="icon-cw" />
                     </button>
-                    <button className="icon-btn" title={isPython ? "Formatear código Python" : "Formatear código Java"} onClick={onFormatCode} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                    <button className="icon-btn" title={isPython ? "Formatear Python" : "Formatear Java"} onClick={onFormatCode}>
                         <i className="icon-magic" />
                     </button>
                 </div>
             </div>
 
-            <div style={{ flex: 1, position: 'relative', background: '#1e1e1e' }}>
+            <div style={{ flex: 1, position: 'relative', background: theme === 'light' ? '#f0f7ff' : '#090d16' }}>
                 <Editor
                     height="100%"
                     language={isPython ? 'python' : 'java'}
-                    theme="vs-dark"
+                    theme={theme === 'light' ? 'hacker-cyan-light' : 'hacker-cyan-dark'}
                     value={code}
                     onChange={(value) => setCode(value || '')}
                     onMount={handleEditorDidMount}
