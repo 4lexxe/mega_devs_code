@@ -158,9 +158,24 @@ function executePythonCode(code, inputStr) {
     };
 }
 
-function isPythonSubmission(code, problem) {
-    if (problem && problem.language === 'python') return true;
-    if (code && (code.includes('def ') || code.includes('print(') || code.includes('import sys'))) return true;
+function isPythonSubmission(code, problem = null, payload = null) {
+    if (payload && payload.language === 'java') return false;
+    if (payload && payload.language === 'python') return true;
+
+    if (code) {
+        if (code.includes('class Main') || code.includes('public class') || code.includes('import java.') || code.includes('System.out') || code.includes('Scanner ')) {
+            return false;
+        }
+    }
+
+    if (problem && (problem.language === 'python' || (problem.category && problem.category.includes('PYTHON')))) {
+        return true;
+    }
+
+    if (code && (code.includes('def ') || code.includes('import sys') || (code.includes('print(') && !code.includes('System.out')))) {
+        return true;
+    }
+
     return false;
 }
 
@@ -181,7 +196,7 @@ export class RunCodeUseCase {
             auxFile = { filename: payload.auxiliaryFilename, code: payload.auxiliaryCode };
         }
 
-        if (isPythonSubmission(payload.code, prob)) {
+        if (isPythonSubmission(payload.code, prob, payload)) {
             return executePythonCode(payload.code, payload.input);
         }
 
@@ -287,7 +302,7 @@ export class SubmitSolutionUseCase {
             auxFile = { filename: problem.auxiliaryFilename, code: problem.auxiliaryCode };
         }
 
-        const isPy = isPythonSubmission(payload.code, problem);
+        const isPy = isPythonSubmission(payload.code, problem, payload);
 
         let passedCases = 0, totalTime = 0, maxMemory = 0;
         let caseResults = [], firstFail = null;

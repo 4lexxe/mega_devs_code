@@ -1465,6 +1465,78 @@
   ],
   "submissions": [
     {
+      "id": "SUB-964115",
+      "problemId": "P08_ARREGLOS",
+      "problemTitle": "Examen 2: Elementos No Repetidos y Promedio de No Múltiplos de 3",
+      "studentName": "TestJava",
+      "timestamp": "19/8/2026, 14:14:56",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 1 pruebas.",
+      "score": 0,
+      "timeMs": 113,
+      "memoryMB": 15.6,
+      "code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] arr = new int[n];\n        for (int i = 0; i < n; i++) {\n            arr[i] = sc.nextInt();\n        }\n        System.out.println(\"Procesado: \" + n);\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "Procesado: 8",
+          "expected": "Nuevo: [11, 33, 58, 62]\nPromedio No Múltiplos de 3: 43.67",
+          "timeMs": 113
+        }
+      ]
+    },
+    {
+      "id": "SUB-104355",
+      "problemId": "P7_PILAS",
+      "problemTitle": "Ordenamiento de una Pila con Pila Auxiliar",
+      "studentName": "Alumno #769",
+      "timestamp": "19/8/2026, 14:07:16",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 150,
+      "timeMs": 617,
+      "memoryMB": 14.7,
+      "code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n\n        int n = sc.nextInt();\n        Stack<Integer> original = new Stack<>();\n\n        for (int i = 0; i < n; i++) {\n            original.push(sc.nextInt());\n        }\n\n        Stack<Integer> aux = new Stack<>();\n\n        while (!original.empty()) {\n            int tmp = original.pop();\n\n            // Mueve los elementos menores que tmp de vuelta a la pila original\n            while (!aux.empty() && aux.peek() < tmp) {\n                original.push(aux.pop());\n            }\n\n            aux.push(tmp);\n        }\n\n        // Imprime la pila ordenada según el formato especificado\n        System.out.println(aux.toString());\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "[98, 92, 34, 31, 3]",
+          "expected": "[98, 92, 34, 31, 3]",
+          "timeMs": 617
+        }
+      ]
+    },
+    {
+      "id": "SUB-940872",
+      "problemId": "P7_PILAS",
+      "problemTitle": "Ordenamiento de una Pila con Pila Auxiliar",
+      "studentName": "Alumno #769",
+      "timestamp": "19/8/2026, 14:06:37",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 150,
+      "timeMs": 655,
+      "memoryMB": 15.2,
+      "code": "import java.util.Scanner;\nimport java.util.Stack;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n\n        int n = sc.nextInt();\n        Stack<Integer> original = new Stack<>();\n\n        for (int i = 0; i < n; i++) {\n            original.push(sc.nextInt());\n        }\n\n        Stack<Integer> aux = new Stack<>();\n\n        while (!original.isEmpty()) {\n            int tmp = original.pop();\n\n            // Mueve los elementos menores que tmp de vuelta a la pila original\n            while (!aux.isEmpty() && aux.peek() < tmp) {\n                original.push(aux.pop());\n            }\n\n            aux.push(tmp);\n        }\n\n        // Imprime la pila ordenada según el formato especificado\n        System.out.println(aux.toString());\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "[98, 92, 34, 31, 3]",
+          "expected": "[98, 92, 34, 31, 3]",
+          "timeMs": 655
+        }
+      ]
+    },
+    {
       "id": "SUB-875794",
       "problemId": "P06_ARREGLOS",
       "problemTitle": "Rotación de Arreglo a la Derecha",
@@ -2603,7 +2675,7 @@
     }
   ],
   "user": {
-    "score": 900,
+    "score": 1050,
     "solved": [
       "P01_POO",
       "P1_PILAS",
@@ -2613,14 +2685,16 @@
       "PY02_PAR_IMPAR",
       "PY03_TABLA",
       "P04_POO",
-      "P02_POO"
+      "P02_POO",
+      "P7_PILAS"
     ],
     "attempted": [
       "P01_POO",
       "ED01_INTRO",
       "PY03_TABLA",
       "P04_POO",
-      "P06_ARREGLOS"
+      "P06_ARREGLOS",
+      "P08_ARREGLOS"
     ]
   }
 }
