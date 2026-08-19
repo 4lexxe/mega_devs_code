@@ -1,13 +1,76 @@
 import React, { useRef, useState } from 'react';
 import Editor from '@monaco-editor/react';
 
-export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode }) => {
+export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode, language = 'java' }) => {
     const editorRef = useRef(null);
     const [editorLoaded, setEditorLoaded] = useState(false);
+
+    const isPython = language === 'python' || (!code.includes('class Main') && !code.includes('public class') && (code.includes('print(') || code.includes('import ') || code.includes('input(')));
 
     const handleEditorDidMount = (editor, monaco) => {
         editorRef.current = editor;
         setEditorLoaded(true);
+
+        // Register custom Python completion suggestions
+        monaco.languages.registerCompletionItemProvider('python', {
+            provideCompletionItems: (model, position) => {
+                const word = model.getWordUntilPosition(position);
+                const range = {
+                    startLineNumber: position.lineNumber,
+                    endLineNumber: position.lineNumber,
+                    startColumn: word.startColumn,
+                    endColumn: word.endColumn,
+                };
+
+                const suggestions = [
+                    {
+                        label: 'print',
+                        kind: monaco.languages.CompletionItemKind.Snippet,
+                        insertText: 'print(${1:output})',
+                        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                        documentation: 'Imprime una línea en la consola de salida en Python.',
+                        detail: 'print()',
+                        range
+                    },
+                    {
+                        label: 'input',
+                        kind: monaco.languages.CompletionItemKind.Snippet,
+                        insertText: 'input().strip()',
+                        documentation: 'Lee una línea de texto de la entrada estándar.',
+                        detail: 'input()',
+                        range
+                    },
+                    {
+                        label: 'int(input())',
+                        kind: monaco.languages.CompletionItemKind.Snippet,
+                        insertText: 'int(input().strip())',
+                        documentation: 'Lee un entero de la entrada estándar.',
+                        detail: 'int(input())',
+                        range
+                    },
+                    {
+                        label: 'sys.stdin.read',
+                        kind: monaco.languages.CompletionItemKind.Snippet,
+                        insertText: 'import sys\n\ndatos = sys.stdin.read().split()',
+                        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                        documentation: 'Lee todos los tokens de la entrada estándar.',
+                        detail: 'Lectura masiva en Python',
+                        range
+                    },
+                    {
+                        label: 'for in range',
+                        kind: monaco.languages.CompletionItemKind.Snippet,
+                        insertText: 'for ${1:i} in range(${2:1}, ${3:6}):\n    ${4:pass}',
+                        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                        documentation: 'Bucle for usando range().',
+                        detail: 'for i in range(...)',
+                        range
+                    }
+                ];
+
+                return { suggestions };
+            }
+        });
 
         // Register custom Java completion suggestions for Stack structure & standard Java IO
         monaco.languages.registerCompletionItemProvider('java', {
@@ -42,7 +105,7 @@ export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode }) => {
                         label: 'peek',
                         kind: monaco.languages.CompletionItemKind.Method,
                         insertText: 'peek()',
-                        documentation: 'Retorna el elemento en el tope de la Pila sin removerlo.',
+                        documentation: 'Examina el elemento en el tope de la Pila sin removerlo.',
                         detail: 'ELEMENT peek()',
                         range
                     },
@@ -50,7 +113,7 @@ export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode }) => {
                         label: 'empty',
                         kind: monaco.languages.CompletionItemKind.Method,
                         insertText: 'empty()',
-                        documentation: 'Verifica si la Pila está vacía (retorna true o false).',
+                        documentation: 'Verifica si la Pila está vacía.',
                         detail: 'boolean empty()',
                         range
                     },
@@ -72,21 +135,12 @@ export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode }) => {
                         range
                     },
                     {
-                        label: 'Stack<Integer>',
+                        label: 'Stack declaration',
                         kind: monaco.languages.CompletionItemKind.Snippet,
-                        insertText: 'Stack<Integer> ${1:pila} = new Stack<>();',
+                        insertText: 'Stack<${1:Integer}> ${2:pila} = new Stack<>();',
                         insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-                        documentation: 'Crea una nueva pila genérica de Enteros (Stack<Integer>).',
-                        detail: 'Instancia Stack<Integer>',
-                        range
-                    },
-                    {
-                        label: 'Stack<String>',
-                        kind: monaco.languages.CompletionItemKind.Snippet,
-                        insertText: 'Stack<String> ${1:pila} = new Stack<>();',
-                        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-                        documentation: 'Crea una nueva pila genérica de Cadenas (Stack<String>).',
-                        detail: 'Instancia Stack<String>',
+                        documentation: 'Declaración e instanciación de una Pila en Java.',
+                        detail: 'Stack<T> stack = new Stack<>()',
                         range
                     },
                     {
@@ -113,21 +167,73 @@ export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode }) => {
         });
     };
 
+    const [copiedToast, setCopiedToast] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const containerRef = useRef(null);
+
+    const handleCopyCode = () => {
+        navigator.clipboard.writeText(code);
+        setCopiedToast(true);
+        setTimeout(() => setCopiedToast(false), 2000);
+    };
+
+    const handleUndo = () => {
+        if (editorRef.current) {
+            editorRef.current.trigger('keyboard', 'undo', null);
+        }
+    };
+
+    const handleRedo = () => {
+        if (editorRef.current) {
+            editorRef.current.trigger('keyboard', 'redo', null);
+        }
+    };
+
+    const toggleFullscreen = () => {
+        if (!containerRef.current) return;
+        if (!document.fullscreenElement) {
+            containerRef.current.requestFullscreen?.().catch(() => {});
+            setIsFullscreen(true);
+        } else {
+            document.exitFullscreen?.().catch(() => {});
+            setIsFullscreen(false);
+        }
+    };
+
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+        <div ref={containerRef} style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden', background: 'var(--bg-surface)' }}>
             <div className="editor-topbar">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'var(--font-code)', fontSize: '0.85rem', color: 'var(--brand-java)' }}>
-                    <i className="icon-doc-text" />
-                    <span>Main.java</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'var(--font-code)', fontSize: '0.85rem', color: isPython ? '#38bdf8' : 'var(--brand-java)' }}>
+                    <i className={isPython ? "icon-code" : "icon-doc-text"} />
+                    <span>{isPython ? 'solution.py' : 'Main.java'}</span>
                     <span style={{ fontSize: '0.72rem', background: 'var(--bg-surface-elevated)', color: 'var(--text-muted)', border: '1px solid var(--border-color)', padding: '0.1rem 0.5rem', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}>
-                        <i className="icon-magic" style={{ fontSize: '0.7rem' }} /> Autocompletado Activo
+                        <i className="icon-magic" style={{ fontSize: '0.7rem' }} /> Autocompletado Activo ({isPython ? 'Python' : 'Java'})
                     </span>
+                    {copiedToast && (
+                        <span style={{ fontSize: '0.72rem', background: 'rgba(16, 185, 129, 0.2)', color: '#10b981', border: '1px solid rgba(16, 185, 129, 0.4)', padding: '0.1rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>
+                            ✓ ¡Código Copiado!
+                        </span>
+                    )}
                 </div>
-                <div style={{ display: 'flex', gap: '0.4rem' }}>
+
+                {/* OC Editor Enhanced Toolbar */}
+                <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center' }}>
+                    <button className="icon-btn" title="Copiar Código al Portapapeles" onClick={handleCopyCode} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                        <i className="icon-docs" />
+                    </button>
+                    <button className="icon-btn" title="Deshacer (Ctrl+Z)" onClick={handleUndo} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                        <i className="icon-reply" />
+                    </button>
+                    <button className="icon-btn" title="Rehacer (Ctrl+Y)" onClick={handleRedo} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                        <i className="icon-forward" />
+                    </button>
+                    <button className="icon-btn" title="Pantalla Completa" onClick={toggleFullscreen} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                        <i className="icon-resize-full" />
+                    </button>
                     <button className="icon-btn" title="Restablecer plantilla inicial" onClick={onResetCode} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
                         <i className="icon-cw" />
                     </button>
-                    <button className="icon-btn" title="Formatear código Java" onClick={onFormatCode} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
+                    <button className="icon-btn" title={isPython ? "Formatear código Python" : "Formatear código Java"} onClick={onFormatCode} style={{ background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', padding: '0.3rem', borderRadius: '4px' }}>
                         <i className="icon-magic" />
                     </button>
                 </div>
@@ -136,7 +242,7 @@ export const CodeEditor = ({ code, setCode, onResetCode, onFormatCode }) => {
             <div style={{ flex: 1, position: 'relative', background: '#1e1e1e' }}>
                 <Editor
                     height="100%"
-                    defaultLanguage="java"
+                    language={isPython ? 'python' : 'java'}
                     theme="vs-dark"
                     value={code}
                     onChange={(value) => setCode(value || '')}

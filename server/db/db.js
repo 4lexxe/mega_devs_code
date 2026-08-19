@@ -37,6 +37,13 @@ class Database {
                 let problemsList = Array.isArray(parsed.problems) ? parsed.problems : [];
                 if (problemsList.length === 0) {
                     problemsList = [...INITIAL_PROBLEMS];
+                } else {
+                    const existingIds = new Set(problemsList.map(p => p.id));
+                    for (const initP of INITIAL_PROBLEMS) {
+                        if (!existingIds.has(initP.id)) {
+                            problemsList.push(initP);
+                        }
+                    }
                 }
                 this.data = {
                     problems: problemsList,

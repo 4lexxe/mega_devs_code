@@ -17,6 +17,7 @@ export function App() {
     const [submissions, setSubmissions] = useState([]);
     const [leaderboard, setLeaderboard] = useState([]);
 
+    const [selectedModuleId, setSelectedModuleId] = useState(null);
     const [evalResults, setEvalResults] = useState(null);
     const [isEvaluating, setIsEvaluating] = useState(false);
 
@@ -92,7 +93,14 @@ export function App() {
                 } else if (problems.length > 0) {
                     setView('problems');
                 }
+            } else if (hash.startsWith('module/')) {
+                const modId = hash.split('/')[1];
+                setSelectedModuleId(modId);
+                setView('problems');
             } else if (['problems', 'submissions', 'leaderboard', 'create'].includes(hash)) {
+                if (hash === 'problems') {
+                    setSelectedModuleId(null);
+                }
                 setView(hash);
             }
         };
@@ -103,8 +111,20 @@ export function App() {
     }, [problems]);
 
     const navigateToView = (viewName) => {
+        if (viewName === 'problems') {
+            setSelectedModuleId(null);
+        }
         window.location.hash = viewName;
         setView(viewName);
+    };
+
+    const handleSelectModule = (modId) => {
+        setSelectedModuleId(modId);
+        if (modId) {
+            window.location.hash = `module/${modId}`;
+        } else {
+            window.location.hash = 'problems';
+        }
     };
 
     const handleSelectProblem = (problem) => {
@@ -166,6 +186,8 @@ export function App() {
                         userStats={userStats}
                         onSelectProblem={handleSelectProblem}
                         onNavigateToCreate={() => navigateToView('create')}
+                        selectedModuleId={selectedModuleId}
+                        onSelectModule={handleSelectModule}
                     />
                 )}
 

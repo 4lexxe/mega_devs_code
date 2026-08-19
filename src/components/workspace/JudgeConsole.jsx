@@ -68,9 +68,15 @@ export const JudgeConsole = ({
                             </span>
                         </div>
                         {!tc.passed && (
-                            <div style={{ marginTop: '0.4rem', background: 'var(--bg-dark)', padding: '0.4rem', borderRadius: '4px', fontFamily: 'var(--font-code)', fontSize: '0.78rem' }}>
-                                <div><strong style={{ color: 'var(--text-dim)' }}>Obtenido:</strong> {tc.actual || 'N/A'}</div>
-                                <div><strong style={{ color: 'var(--text-dim)' }}>Esperado:</strong> {tc.expected}</div>
+                            <div style={{ marginTop: '0.4rem', background: 'var(--bg-dark)', padding: '0.5rem', borderRadius: '4px', fontFamily: 'var(--font-code)', fontSize: '0.78rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+                                <div>
+                                    <strong style={{ color: 'var(--status-wa)', display: 'block', marginBottom: '0.2rem' }}>Obtenido:</strong>
+                                    <pre style={{ margin: 0, whiteSpace: 'pre-wrap', fontFamily: 'inherit', color: 'var(--text-main)', background: 'rgba(0,0,0,0.3)', padding: '0.3rem 0.5rem', borderRadius: '4px' }}>{tc.actual || 'N/A'}</pre>
+                                </div>
+                                <div>
+                                    <strong style={{ color: 'var(--status-ac)', display: 'block', marginBottom: '0.2rem' }}>Esperado:</strong>
+                                    <pre style={{ margin: 0, whiteSpace: 'pre-wrap', fontFamily: 'inherit', color: 'var(--text-main)', background: 'rgba(0,0,0,0.3)', padding: '0.3rem 0.5rem', borderRadius: '4px' }}>{tc.expected}</pre>
+                                </div>
                             </div>
                         )}
                     </div>

@@ -6,12 +6,12 @@
       "difficulty": "Fácil",
       "points": 100,
       "category": "JAVA -> POO",
-      "sectionTitle": "Módulo 1: Fundamentos de POO",
+      "sectionTitle": "Nivel 2 (Intermedio): Atributos y Arreglos en POO",
       "track": "Programación Orientada a Objetos",
       "timeLimit": 1,
       "memoryLimit": 32,
-      "description": "Crearás la clase `Persona` con los atributos `nombre` (String) y `edad` (int).\n\n1. Leer un entero $N$.\n2. Leer $N$ pares de valores `(nombre, edad)` e instanciar un objeto `Persona` para cada uno.\n3. Imprimir cada persona en formato `Persona <i+1>: <nombre> (<edad> años)`.\n4. Identificar e imprimir la persona de mayor edad.",
-      "inputDesc": "Un entero $N$ ($1 \\le N \\le 50$), seguido de $N$ líneas con `nombre` y `edad`.",
+      "description": "Crearás la clase `Persona` con los atributos `nombre` (String) y `edad` (int).\n\n1. Leer un entero $N$.\n2. Leer $N$ pares de valores `(nombre, edad)` (cada valor en una línea independiente) e instanciar un objeto `Persona` para cada uno.\n3. Imprimir cada persona en formato `Persona <i+1>: <nombre> (<edad> años)`.\n4. Identificar e imprimir la persona de mayor edad.",
+      "inputDesc": "Un entero $N$ ($1 \\le N \\le 50$), seguido de $N$ pares de líneas con `nombre` y `edad`.",
       "outputDesc": "Imprimir las $N$ personas y al final la persona con mayor edad.",
       "constraints": [
         "1 <= N <= 50",
@@ -25,18 +25,18 @@
       ],
       "examples": [
         {
-          "input": "3\nJuan 20\nMaría 25\nCarlos 22",
+          "input": "3\nJuan\n20\nMaría\n25\nCarlos\n22",
           "output": "Persona 1: Juan (20 años)\nPersona 2: María (25 años)\nPersona 3: Carlos (22 años)\nMayor: María con 25 años"
         }
       ],
       "testcases": [
         {
-          "input": "3\nJuan 20\nMaría 25\nCarlos 22",
+          "input": "3\nJuan\n20\nMaría\n25\nCarlos\n22",
           "expectedOutput": "Persona 1: Juan (20 años)\nPersona 2: María (25 años)\nPersona 3: Carlos (22 años)\nMayor: María con 25 años",
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\nclass Persona {\n    String nombre;\n    int edad;\n    public Persona(String nombre, int edad) {\n        this.nombre = nombre;\n        this.edad = edad;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        Persona mayor = null;\n        for (int i = 1; i <= N; i++) {\n            String nombre = sc.next();\n            int edad = sc.nextInt();\n            Persona p = new Persona(nombre, edad);\n            System.out.println(\"Persona \" + i + \": \" + p.nombre + \" (\" + p.edad + \" años)\");\n            if (mayor == null || p.edad > mayor.edad) mayor = p;\n        }\n        if (mayor != null) System.out.println(\"Mayor: \" + mayor.nombre + \" con \" + mayor.edad + \" años\");\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P01_ARREGLOS",
@@ -49,7 +49,7 @@
       "timeLimit": 1,
       "memoryLimit": 32,
       "description": "Dado un arreglo unidimensional de $N$ enteros, calcula la suma total, el valor máximo y el valor mínimo.",
-      "inputDesc": "Entero $N$ seguido de $N$ enteros.",
+      "inputDesc": "Entero $N$ en la primera línea, seguido de los $N$ enteros (uno por línea).",
       "outputDesc": "Imprimir Suma, Máximo y Mínimo.",
       "constraints": [
         "1 <= N <= 100"
@@ -62,18 +62,18 @@
       ],
       "examples": [
         {
-          "input": "5\n12 5 8 20 3",
+          "input": "5\n12\n5\n8\n20\n3",
           "output": "Suma: 48\nMáximo: 20\nMínimo: 3"
         }
       ],
       "testcases": [
         {
-          "input": "5\n12 5 8 20 3",
+          "input": "5\n12\n5\n8\n20\n3",
           "expectedOutput": "Suma: 48\nMáximo: 20\nMínimo: 3",
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n        int suma = 0, max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;\n        for (int i = 0; i < N; i++) {\n            arr[i] = sc.nextInt();\n            suma += arr[i];\n            if (arr[i] > max) max = arr[i];\n            if (arr[i] < min) min = arr[i];\n        }\n        System.out.println(\"Suma: \" + suma);\n        System.out.println(\"Máximo: \" + max);\n        System.out.println(\"Mínimo: \" + min);\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P02_ARREGLOS",
@@ -86,7 +86,7 @@
       "timeLimit": 1,
       "memoryLimit": 32,
       "description": "Dado un arreglo unidimensional de $N$ enteros, cuenta cuántos elementos son pares y cuántos son impares.",
-      "inputDesc": "Entero $N$ seguido de $N$ enteros.",
+      "inputDesc": "Entero $N$ en la primera línea, seguido de $N$ enteros (uno por línea).",
       "outputDesc": "Cantidad de Pares e Impares.",
       "constraints": [
         "1 <= N <= 100"
@@ -99,18 +99,18 @@
       ],
       "examples": [
         {
-          "input": "5\n2 7 4 9 11",
+          "input": "5\n2\n7\n4\n9\n11",
           "output": "Pares: 2\nImpares: 3"
         }
       ],
       "testcases": [
         {
-          "input": "5\n2 7 4 9 11",
+          "input": "5\n2\n7\n4\n9\n11",
           "expectedOutput": "Pares: 2\nImpares: 3",
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        int pares = 0, impares = 0;\n        for (int i = 0; i < N; i++) {\n            int v = sc.nextInt();\n            if (v % 2 == 0) pares++;\n            else impares++;\n        }\n        System.out.println(\"Pares: \" + pares);\n        System.out.println(\"Impares: \" + impares);\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P03_ARREGLOS",
@@ -123,7 +123,7 @@
       "timeLimit": 1,
       "memoryLimit": 32,
       "description": "Dado un arreglo unidimensional de $N$ enteros, invierte sus elementos y muéstralos ordenados desde el último hasta el primero.",
-      "inputDesc": "Entero $N$ seguido de $N$ enteros.",
+      "inputDesc": "Entero $N$ en la primera línea, seguido de $N$ enteros (uno por línea).",
       "outputDesc": "El arreglo invertido separado por espacios.",
       "constraints": [
         "1 <= N <= 100"
@@ -136,18 +136,18 @@
       ],
       "examples": [
         {
-          "input": "4\n10 20 30 40",
+          "input": "4\n10\n20\n30\n40",
           "output": "40 30 20 10"
         }
       ],
       "testcases": [
         {
-          "input": "4\n10 20 30 40",
+          "input": "4\n10\n20\n30\n40",
           "expectedOutput": "40 30 20 10",
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n        for (int i = 0; i < N; i++) arr[i] = sc.nextInt();\n        for (int i = N - 1; i >= 0; i--) {\n            System.out.print(arr[i] + (i == 0 ? \"\" : \" \"));\n        }\n        System.out.println();\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P04_ARREGLOS",
@@ -160,7 +160,7 @@
       "timeLimit": 1,
       "memoryLimit": 32,
       "description": "Dado un arreglo de $N$ enteros y un valor buscado $X$, determina la primera posición (índice 0-based) donde aparece $X$. Si no se encuentra, imprime `-1`.",
-      "inputDesc": "$N$ enteros, seguidos del entero $X$ a buscar.",
+      "inputDesc": "Entero $N$ en la primera línea, seguido de $N$ enteros (uno por línea), y finalmente el entero $X$ a buscar en la última línea.",
       "outputDesc": "`Posición: <índice>` o `Posición: -1`.",
       "constraints": [
         "1 <= N <= 100"
@@ -173,18 +173,18 @@
       ],
       "examples": [
         {
-          "input": "5\n15 42 8 99 23\n99",
+          "input": "5\n15\n42\n8\n99\n23\n99",
           "output": "Posición: 3"
         }
       ],
       "testcases": [
         {
-          "input": "5\n15 42 8 99 23\n99",
+          "input": "5\n15\n42\n8\n99\n23\n99",
           "expectedOutput": "Posición: 3",
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n        for (int i = 0; i < N; i++) arr[i] = sc.nextInt();\n        int X = sc.nextInt();\n        int pos = -1;\n        for (int i = 0; i < N; i++) {\n            if (arr[i] == X) { pos = i; break; }\n        }\n        System.out.println(\"Posición: \" + pos);\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P05_ARREGLOS",
@@ -197,7 +197,7 @@
       "timeLimit": 1,
       "memoryLimit": 32,
       "description": "Dado un arreglo de $N$ enteros y un valor umbral $K$, calcula el promedio de los elementos que son estrictamente mayores a $K$.",
-      "inputDesc": "$N$ enteros, seguidos del umbral $K$.",
+      "inputDesc": "Entero $N$ en la primera línea, seguido de $N$ enteros (uno por línea), y el umbral $K$ al final en una nueva línea.",
       "outputDesc": "Promedio redondeado a 2 decimales.",
       "constraints": [
         "1 <= N <= 100"
@@ -210,18 +210,18 @@
       ],
       "examples": [
         {
-          "input": "4\n10 50 80 20\n25",
+          "input": "4\n10\n50\n80\n20\n25",
           "output": "Promedio: 65.0"
         }
       ],
       "testcases": [
         {
-          "input": "4\n10 50 80 20\n25",
+          "input": "4\n10\n50\n80\n20\n25",
           "expectedOutput": "Promedio: 65.0",
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n        for (int i = 0; i < N; i++) arr[i] = sc.nextInt();\n        int K = sc.nextInt();\n        double suma = 0;\n        int cant = 0;\n        for (int v : arr) {\n            if (v > K) { suma += v; cant++; }\n        }\n        if (cant > 0) {\n            double prom = Math.round((suma / cant) * 100.0) / 100.0;\n            System.out.println(\"Promedio: \" + prom);\n        } else {\n            System.out.println(\"Promedio: 0.0\");\n        }\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P06_ARREGLOS",
@@ -234,7 +234,7 @@
       "timeLimit": 1,
       "memoryLimit": 32,
       "description": "Dado un arreglo de $N$ enteros y una cantidad de desplazamientos $D$, desplaza el arreglo $D$ posiciones hacia la derecha.",
-      "inputDesc": "$N$ enteros, seguido de la cantidad de rotaciones $D$.",
+      "inputDesc": "Entero $N$ en la primera línea, seguido de $N$ enteros (uno por línea), y la cantidad de rotaciones $D$ al final en una nueva línea.",
       "outputDesc": "Arreglo rotado separado por espacios.",
       "constraints": [
         "1 <= N <= 100"
@@ -247,18 +247,18 @@
       ],
       "examples": [
         {
-          "input": "5\n1 2 3 4 5\n2",
+          "input": "5\n1\n2\n3\n4\n5\n2",
           "output": "4 5 1 2 3"
         }
       ],
       "testcases": [
         {
-          "input": "5\n1 2 3 4 5\n2",
+          "input": "5\n1\n2\n3\n4\n5\n2",
           "expectedOutput": "4 5 1 2 3",
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n        for (int i = 0; i < N; i++) arr[i] = sc.nextInt();\n        int D = sc.nextInt();\n        int[] rotado = new int[N];\n        for (int i = 0; i < N; i++) {\n            rotado[(i + D) % N] = arr[i];\n        }\n        for (int i = 0; i < N; i++) {\n            System.out.print(rotado[i] + (i == N - 1 ? \"\" : \" \"));\n        }\n        System.out.println();\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P07_ARREGLOS",
@@ -296,7 +296,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static boolean esVocal(char c) {\n        char min = Character.toLowerCase(c);\n        return min == 'a' || min == 'e' || min == 'i' || min == 'o' || min == 'u';\n    }\n\n    public static char[] filtrarConsonantes(char[] letras) {\n        int cant = 0;\n        for (char c : letras) {\n            if (!esVocal(c)) cant++;\n        }\n        char[] nuevo = new char[cant];\n        int idx = 0;\n        for (char c : letras) {\n            if (!esVocal(c)) {\n                nuevo[idx++] = c;\n            }\n        }\n        return nuevo;\n    }\n\n    public static int contarApariciones(char[] arr, char buscado) {\n        int cant = 0;\n        for (char c : arr) {\n            if (c == buscado) cant++;\n        }\n        return cant;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        char[] letras = new char[N];\n        for (int i = 0; i < N; i++) {\n            letras[i] = sc.next().charAt(0);\n        }\n        char buscado = sc.next().charAt(0);\n\n        char[] nuevo = filtrarConsonantes(letras);\n        int cant = contarApariciones(nuevo, buscado);\n\n        StringBuilder sb = new StringBuilder();\n        sb.append(\"[\");\n        for (int i = 0; i < nuevo.length; i++) {\n            sb.append(nuevo[i]).append(i == nuevo.length - 1 ? \"\" : \", \");\n        }\n        sb.append(\"]\");\n\n        System.out.println(\"Nuevo: \" + sb.toString());\n        System.out.println(\"Apariciones de '\" + buscado + \"': \" + cant);\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P08_ARREGLOS",
@@ -334,7 +334,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static int contarOcurrencias(int[] arr, int val) {\n        int cant = 0;\n        for (int v : arr) if (v == val) cant++;\n        return cant;\n    }\n\n    public static int[] obtenerNoRepetidos(int[] numeros) {\n        int cantUnicos = 0;\n        for (int v : numeros) {\n            if (contarOcurrencias(numeros, v) == 1) cantUnicos++;\n        }\n        int[] nuevo = new int[cantUnicos];\n        int idx = 0;\n        for (int v : numeros) {\n            if (contarOcurrencias(numeros, v) == 1) {\n                nuevo[idx++] = v;\n            }\n        }\n        return nuevo;\n    }\n\n    public static double promedioNoMultiplos3(int[] nuevo) {\n        double suma = 0;\n        int cant = 0;\n        for (int v : nuevo) {\n            if (v % 3 != 0) {\n                suma += v;\n                cant++;\n            }\n        }\n        return cant > 0 ? (suma / cant) : 0.0;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        int[] numeros = new int[N];\n        for (int i = 0; i < N; i++) numeros[i] = sc.nextInt();\n\n        int[] nuevo = obtenerNoRepetidos(numeros);\n        double prom = promedioNoMultiplos3(nuevo);\n        prom = Math.round(prom * 100.0) / 100.0;\n\n        StringBuilder sb = new StringBuilder();\n        sb.append(\"[\");\n        for (int i = 0; i < nuevo.length; i++) {\n            sb.append(nuevo[i]).append(i == nuevo.length - 1 ? \"\" : \", \");\n        }\n        sb.append(\"]\");\n\n        System.out.println(\"Nuevo: \" + sb.toString());\n        System.out.println(\"Promedio No Múltiplos de 3: \" + prom);\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P09_ARREGLOS",
@@ -372,7 +372,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        int[] v = new int[N];\n        for (int i = 0; i < N; i++) v[i] = sc.nextInt();\n\n        int filas = N / 3;\n        int cols = 3;\n        int[][] matriz = new int[filas][cols];\n\n        int minVal = Integer.MAX_VALUE;\n        int minFila = -1, minCol = -1;\n\n        for (int i = 0; i < N; i++) {\n            int r = i / cols;\n            int c = i % cols;\n            matriz[r][c] = v[i];\n            if (v[i] < minVal) {\n                minVal = v[i];\n                minFila = r;\n                minCol = c;\n            }\n        }\n\n        System.out.println(\"Matriz \" + filas + \"x3:\");\n        for (int r = 0; r < filas; r++) {\n            for (int c = 0; c < cols; c++) {\n                System.out.print(matriz[r][c] + (c == cols - 1 ? \"\" : \" \"));\n            }\n            System.out.println();\n        }\n        System.out.println(\"Mínimo: \" + minVal + \" en Fila \" + minFila + \", Columna \" + minCol);\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P01_ARRAYLIST",
@@ -409,7 +409,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\nimport java.util.ArrayList;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        ArrayList<Integer> lista = new ArrayList<>();\n        for (int i = 0; i < N; i++) lista.add(sc.nextInt());\n        lista.removeIf(n -> n % 2 != 0);\n        System.out.println(\"Lista Par: \" + lista);\n        System.out.println(\"Elementos: \" + lista.size());\n    }\n}"
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     },
     {
       "id": "P1_PILAS",
@@ -446,7 +446,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        Stack<Integer> pila = new Stack<>();\n        for (int i = 0; i < N; i++) pila.push(sc.nextInt());\n        \n        System.out.println(\"Tamaño: \" + pila.size());\n        System.out.println(\"Vacía: \" + pila.empty());\n        System.out.println(\"Tope: \" + pila.peek());\n    }\n}",
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}",
       "auxiliaryFilename": "Stack.java",
       "auxiliaryCode": "public class Stack<ELEMENT> {\n    private final static Integer defaulDimension = 20;\n\n    private ELEMENT[] data;\n    private Integer count;\n\n    public Stack() {\n        this(Stack.defaulDimension);\n    }\n\n    public Stack(Integer dimension) {\n        if (dimension <= 0) {\n            throw new RuntimeException(\"La cantidad de elementos en la pila debe ser positiva\");\n        }\n        this.data = (ELEMENT[]) new Object[dimension];\n        this.count = 0;\n    }\n\n    public boolean empty() {\n        return this.count <= 0;\n    }\n\n    public ELEMENT peek() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        return this.data[this.count - 1];\n    }\n\n    public ELEMENT pop() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        --this.count;\n        return this.data[this.count];\n    }\n\n    public ELEMENT push(ELEMENT element) {\n        if (this.size() >= this.data.length) {\n            ELEMENT[] temp = (ELEMENT[]) new Object[this.data.length * 2];\n            for (int i = 0; i < this.data.length; ++i) {\n                temp[i] = this.data[i];\n            }\n            this.data = temp;\n        }\n        this.data[this.count] = element;\n        ++this.count;\n        return element;\n    }\n\n    public int search(Object object) {\n        for (int pos = this.count - 1; pos >= 0; --pos) {\n            if (this.data[pos].equals(object)) {\n                return this.count - pos;\n            }\n        }\n        return -1;\n    }\n\n    public int size() {\n        return this.count;\n    }\n\n    @Override\n    public String toString() {\n        if (this.size() <= 0) {\n            return \"\";\n        }\n        StringBuilder sb = new StringBuilder();\n        sb.append(\"[\" + this.data[0].toString());\n        for (int i = 1; i < this.size(); ++i) {\n            sb.append(\", \" + this.data[i].toString());\n        }\n        sb.append(\"]\");\n        return sb.toString();\n    }\n}"
     },
@@ -485,7 +485,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        Stack<Integer> pila = new Stack<>();\n        for (int i = 0; i < N; i++) pila.push(sc.nextInt());\n        \n        while (!pila.empty()) {\n            System.out.print(pila.pop() + (pila.empty() ? \"\" : \" \"));\n        }\n        System.out.println();\n    }\n}",
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}",
       "auxiliaryFilename": "Stack.java",
       "auxiliaryCode": "public class Stack<ELEMENT> {\n    private final static Integer defaulDimension = 20;\n\n    private ELEMENT[] data;\n    private Integer count;\n\n    public Stack() {\n        this(Stack.defaulDimension);\n    }\n\n    public Stack(Integer dimension) {\n        if (dimension <= 0) {\n            throw new RuntimeException(\"La cantidad de elementos en la pila debe ser positiva\");\n        }\n        this.data = (ELEMENT[]) new Object[dimension];\n        this.count = 0;\n    }\n\n    public boolean empty() {\n        return this.count <= 0;\n    }\n\n    public ELEMENT peek() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        return this.data[this.count - 1];\n    }\n\n    public ELEMENT pop() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        --this.count;\n        return this.data[this.count];\n    }\n\n    public ELEMENT push(ELEMENT element) {\n        if (this.size() >= this.data.length) {\n            ELEMENT[] temp = (ELEMENT[]) new Object[this.data.length * 2];\n            for (int i = 0; i < this.data.length; ++i) {\n                temp[i] = this.data[i];\n            }\n            this.data = temp;\n        }\n        this.data[this.count] = element;\n        ++this.count;\n        return element;\n    }\n\n    public int search(Object object) {\n        for (int pos = this.count - 1; pos >= 0; --pos) {\n            if (this.data[pos].equals(object)) {\n                return this.count - pos;\n            }\n        }\n        return -1;\n    }\n\n    public int size() {\n        return this.count;\n    }\n\n    @Override\n    public String toString() {\n        if (this.size() <= 0) {\n            return \"\";\n        }\n        StringBuilder sb = new StringBuilder();\n        sb.append(\"[\" + this.data[0].toString());\n        for (int i = 1; i < this.size(); ++i) {\n            sb.append(\", \" + this.data[i].toString());\n        }\n        sb.append(\"]\");\n        return sb.toString();\n    }\n}"
     },
@@ -524,7 +524,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        Stack<Integer> pila = new Stack<>();\n        for (int i = 0; i < N; i++) pila.push(sc.nextInt());\n        \n        Stack<Integer> aux = new Stack<>();\n        while (!pila.empty()) aux.push(pila.pop());\n        while (!aux.empty()) {\n            int val = aux.pop();\n            pila.push(val);\n            pila.push(val);\n        }\n        System.out.println(pila.toString());\n    }\n}",
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}",
       "auxiliaryFilename": "Stack.java",
       "auxiliaryCode": "public class Stack<ELEMENT> {\n    private final static Integer defaulDimension = 20;\n\n    private ELEMENT[] data;\n    private Integer count;\n\n    public Stack() {\n        this(Stack.defaulDimension);\n    }\n\n    public Stack(Integer dimension) {\n        if (dimension <= 0) {\n            throw new RuntimeException(\"La cantidad de elementos en la pila debe ser positiva\");\n        }\n        this.data = (ELEMENT[]) new Object[dimension];\n        this.count = 0;\n    }\n\n    public boolean empty() {\n        return this.count <= 0;\n    }\n\n    public ELEMENT peek() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        return this.data[this.count - 1];\n    }\n\n    public ELEMENT pop() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        --this.count;\n        return this.data[this.count];\n    }\n\n    public ELEMENT push(ELEMENT element) {\n        if (this.size() >= this.data.length) {\n            ELEMENT[] temp = (ELEMENT[]) new Object[this.data.length * 2];\n            for (int i = 0; i < this.data.length; ++i) {\n                temp[i] = this.data[i];\n            }\n            this.data = temp;\n        }\n        this.data[this.count] = element;\n        ++this.count;\n        return element;\n    }\n\n    public int search(Object object) {\n        for (int pos = this.count - 1; pos >= 0; --pos) {\n            if (this.data[pos].equals(object)) {\n                return this.count - pos;\n            }\n        }\n        return -1;\n    }\n\n    public int size() {\n        return this.count;\n    }\n\n    @Override\n    public String toString() {\n        if (this.size() <= 0) {\n            return \"\";\n        }\n        StringBuilder sb = new StringBuilder();\n        sb.append(\"[\" + this.data[0].toString());\n        for (int i = 1; i < this.size(); ++i) {\n            sb.append(\", \" + this.data[i].toString());\n        }\n        sb.append(\"]\");\n        return sb.toString();\n    }\n}"
     },
@@ -563,7 +563,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        Stack<Integer> pila = new Stack<>();\n        for (int i = 0; i < N; i++) pila.push(sc.nextInt());\n        int X = sc.nextInt();\n        \n        Stack<Integer> aux = new Stack<>();\n        boolean enc = false;\n        while (!pila.empty()) {\n            int v = pila.pop();\n            if (v == X) enc = true;\n            aux.push(v);\n        }\n        while (!aux.empty()) pila.push(aux.pop());\n        \n        System.out.println(enc ? \"ENCONTRADO\" : \"NO ENCONTRADO\");\n        System.out.println(\"Pila: \" + pila.toString());\n    }\n}",
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}",
       "auxiliaryFilename": "Stack.java",
       "auxiliaryCode": "public class Stack<ELEMENT> {\n    private final static Integer defaulDimension = 20;\n\n    private ELEMENT[] data;\n    private Integer count;\n\n    public Stack() {\n        this(Stack.defaulDimension);\n    }\n\n    public Stack(Integer dimension) {\n        if (dimension <= 0) {\n            throw new RuntimeException(\"La cantidad de elementos en la pila debe ser positiva\");\n        }\n        this.data = (ELEMENT[]) new Object[dimension];\n        this.count = 0;\n    }\n\n    public boolean empty() {\n        return this.count <= 0;\n    }\n\n    public ELEMENT peek() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        return this.data[this.count - 1];\n    }\n\n    public ELEMENT pop() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        --this.count;\n        return this.data[this.count];\n    }\n\n    public ELEMENT push(ELEMENT element) {\n        if (this.size() >= this.data.length) {\n            ELEMENT[] temp = (ELEMENT[]) new Object[this.data.length * 2];\n            for (int i = 0; i < this.data.length; ++i) {\n                temp[i] = this.data[i];\n            }\n            this.data = temp;\n        }\n        this.data[this.count] = element;\n        ++this.count;\n        return element;\n    }\n\n    public int search(Object object) {\n        for (int pos = this.count - 1; pos >= 0; --pos) {\n            if (this.data[pos].equals(object)) {\n                return this.count - pos;\n            }\n        }\n        return -1;\n    }\n\n    public int size() {\n        return this.count;\n    }\n\n    @Override\n    public String toString() {\n        if (this.size() <= 0) {\n            return \"\";\n        }\n        StringBuilder sb = new StringBuilder();\n        sb.append(\"[\" + this.data[0].toString());\n        for (int i = 1; i < this.size(); ++i) {\n            sb.append(\", \" + this.data[i].toString());\n        }\n        sb.append(\"]\");\n        return sb.toString();\n    }\n}"
     },
@@ -602,7 +602,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        Stack<Integer> pila = new Stack<>();\n        for (int i = 0; i < N; i++) pila.push(sc.nextInt());\n        int X = sc.nextInt();\n        \n        Stack<Integer> aux = new Stack<>();\n        while (!pila.empty()) {\n            int v = pila.pop();\n            if (v != X) aux.push(v);\n        }\n        while (!aux.empty()) pila.push(aux.pop());\n        \n        System.out.println(pila.toString());\n    }\n}",
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}",
       "auxiliaryFilename": "Stack.java",
       "auxiliaryCode": "public class Stack<ELEMENT> {\n    private final static Integer defaulDimension = 20;\n\n    private ELEMENT[] data;\n    private Integer count;\n\n    public Stack() {\n        this(Stack.defaulDimension);\n    }\n\n    public Stack(Integer dimension) {\n        if (dimension <= 0) {\n            throw new RuntimeException(\"La cantidad de elementos en la pila debe ser positiva\");\n        }\n        this.data = (ELEMENT[]) new Object[dimension];\n        this.count = 0;\n    }\n\n    public boolean empty() {\n        return this.count <= 0;\n    }\n\n    public ELEMENT peek() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        return this.data[this.count - 1];\n    }\n\n    public ELEMENT pop() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        --this.count;\n        return this.data[this.count];\n    }\n\n    public ELEMENT push(ELEMENT element) {\n        if (this.size() >= this.data.length) {\n            ELEMENT[] temp = (ELEMENT[]) new Object[this.data.length * 2];\n            for (int i = 0; i < this.data.length; ++i) {\n                temp[i] = this.data[i];\n            }\n            this.data = temp;\n        }\n        this.data[this.count] = element;\n        ++this.count;\n        return element;\n    }\n\n    public int search(Object object) {\n        for (int pos = this.count - 1; pos >= 0; --pos) {\n            if (this.data[pos].equals(object)) {\n                return this.count - pos;\n            }\n        }\n        return -1;\n    }\n\n    public int size() {\n        return this.count;\n    }\n\n    @Override\n    public String toString() {\n        if (this.size() <= 0) {\n            return \"\";\n        }\n        StringBuilder sb = new StringBuilder();\n        sb.append(\"[\" + this.data[0].toString());\n        for (int i = 1; i < this.size(); ++i) {\n            sb.append(\", \" + this.data[i].toString());\n        }\n        sb.append(\"]\");\n        return sb.toString();\n    }\n}"
     },
@@ -641,7 +641,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        Stack<Integer> pila = new Stack<>();\n        for (int i = 0; i < N; i++) pila.push(sc.nextInt());\n        \n        int tope = pila.pop();\n        Stack<Integer> aux = new Stack<>();\n        while (pila.size() > 1) aux.push(pila.pop());\n        int fondo = pila.pop();\n        \n        pila.push(tope);\n        while (!aux.empty()) pila.push(aux.pop());\n        pila.push(fondo);\n        \n        System.out.println(pila.toString());\n    }\n}",
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}",
       "auxiliaryFilename": "Stack.java",
       "auxiliaryCode": "public class Stack<ELEMENT> {\n    private final static Integer defaulDimension = 20;\n\n    private ELEMENT[] data;\n    private Integer count;\n\n    public Stack() {\n        this(Stack.defaulDimension);\n    }\n\n    public Stack(Integer dimension) {\n        if (dimension <= 0) {\n            throw new RuntimeException(\"La cantidad de elementos en la pila debe ser positiva\");\n        }\n        this.data = (ELEMENT[]) new Object[dimension];\n        this.count = 0;\n    }\n\n    public boolean empty() {\n        return this.count <= 0;\n    }\n\n    public ELEMENT peek() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        return this.data[this.count - 1];\n    }\n\n    public ELEMENT pop() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        --this.count;\n        return this.data[this.count];\n    }\n\n    public ELEMENT push(ELEMENT element) {\n        if (this.size() >= this.data.length) {\n            ELEMENT[] temp = (ELEMENT[]) new Object[this.data.length * 2];\n            for (int i = 0; i < this.data.length; ++i) {\n                temp[i] = this.data[i];\n            }\n            this.data = temp;\n        }\n        this.data[this.count] = element;\n        ++this.count;\n        return element;\n    }\n\n    public int search(Object object) {\n        for (int pos = this.count - 1; pos >= 0; --pos) {\n            if (this.data[pos].equals(object)) {\n                return this.count - pos;\n            }\n        }\n        return -1;\n    }\n\n    public int size() {\n        return this.count;\n    }\n\n    @Override\n    public String toString() {\n        if (this.size() <= 0) {\n            return \"\";\n        }\n        StringBuilder sb = new StringBuilder();\n        sb.append(\"[\" + this.data[0].toString());\n        for (int i = 1; i < this.size(); ++i) {\n            sb.append(\", \" + this.data[i].toString());\n        }\n        sb.append(\"]\");\n        return sb.toString();\n    }\n}"
     },
@@ -680,7 +680,7 @@
           "isSample": true
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int N = sc.nextInt();\n        Stack<Integer> pila = new Stack<>();\n        for (int i = 0; i < N; i++) pila.push(sc.nextInt());\n        \n        Stack<Integer> aux = new Stack<>();\n        while (!pila.empty()) {\n            int temp = pila.pop();\n            while (!aux.empty() && aux.peek() > temp) {\n                pila.push(aux.pop());\n            }\n            aux.push(temp);\n        }\n        while (!aux.empty()) pila.push(aux.pop());\n        \n        System.out.println(pila.toString());\n    }\n}",
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}",
       "auxiliaryFilename": "Stack.java",
       "auxiliaryCode": "public class Stack<ELEMENT> {\n    private final static Integer defaulDimension = 20;\n\n    private ELEMENT[] data;\n    private Integer count;\n\n    public Stack() {\n        this(Stack.defaulDimension);\n    }\n\n    public Stack(Integer dimension) {\n        if (dimension <= 0) {\n            throw new RuntimeException(\"La cantidad de elementos en la pila debe ser positiva\");\n        }\n        this.data = (ELEMENT[]) new Object[dimension];\n        this.count = 0;\n    }\n\n    public boolean empty() {\n        return this.count <= 0;\n    }\n\n    public ELEMENT peek() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        return this.data[this.count - 1];\n    }\n\n    public ELEMENT pop() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        --this.count;\n        return this.data[this.count];\n    }\n\n    public ELEMENT push(ELEMENT element) {\n        if (this.size() >= this.data.length) {\n            ELEMENT[] temp = (ELEMENT[]) new Object[this.data.length * 2];\n            for (int i = 0; i < this.data.length; ++i) {\n                temp[i] = this.data[i];\n            }\n            this.data = temp;\n        }\n        this.data[this.count] = element;\n        ++this.count;\n        return element;\n    }\n\n    public int search(Object object) {\n        for (int pos = this.count - 1; pos >= 0; --pos) {\n            if (this.data[pos].equals(object)) {\n                return this.count - pos;\n            }\n        }\n        return -1;\n    }\n\n    public int size() {\n        return this.count;\n    }\n\n    @Override\n    public String toString() {\n        if (this.size() <= 0) {\n            return \"\";\n        }\n        StringBuilder sb = new StringBuilder();\n        sb.append(\"[\" + this.data[0].toString());\n        for (int i = 1; i < this.size(); ++i) {\n            sb.append(\", \" + this.data[i].toString());\n        }\n        sb.append(\"]\");\n        return sb.toString();\n    }\n}"
     },
@@ -728,12 +728,1819 @@
           "isSample": false
         }
       ],
-      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String expr = sc.hasNext() ? sc.next() : \"\";\n        Stack<Character> pila = new Stack<>();\n        boolean ok = true;\n        for (int i = 0; i < expr.length(); i++) {\n            char c = expr.charAt(i);\n            if (c == '(' || c == '[' || c == '{') {\n                pila.push(c);\n            } else if (c == ')' || c == ']' || c == '}') {\n                if (pila.empty()) { ok = false; break; }\n                char top = pila.pop();\n                if ((c == ')' && top != '(') || (c == ']' && top != '[') || (c == '}' && top != '{')) {\n                    ok = false; break;\n                }\n            }\n        }\n        if (!pila.empty()) ok = false;\n        System.out.println(ok ? \"BALANCEADO\" : \"DESBALANCEADO\");\n    }\n}",
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}",
       "auxiliaryFilename": "Stack.java",
       "auxiliaryCode": "public class Stack<ELEMENT> {\n    private final static Integer defaulDimension = 20;\n\n    private ELEMENT[] data;\n    private Integer count;\n\n    public Stack() {\n        this(Stack.defaulDimension);\n    }\n\n    public Stack(Integer dimension) {\n        if (dimension <= 0) {\n            throw new RuntimeException(\"La cantidad de elementos en la pila debe ser positiva\");\n        }\n        this.data = (ELEMENT[]) new Object[dimension];\n        this.count = 0;\n    }\n\n    public boolean empty() {\n        return this.count <= 0;\n    }\n\n    public ELEMENT peek() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        return this.data[this.count - 1];\n    }\n\n    public ELEMENT pop() {\n        if (this.empty()) {\n            throw new RuntimeException(\"La pila está vacía...\");\n        }\n        --this.count;\n        return this.data[this.count];\n    }\n\n    public ELEMENT push(ELEMENT element) {\n        if (this.size() >= this.data.length) {\n            ELEMENT[] temp = (ELEMENT[]) new Object[this.data.length * 2];\n            for (int i = 0; i < this.data.length; ++i) {\n                temp[i] = this.data[i];\n            }\n            this.data = temp;\n        }\n        this.data[this.count] = element;\n        ++this.count;\n        return element;\n    }\n\n    public int search(Object object) {\n        for (int pos = this.count - 1; pos >= 0; --pos) {\n            if (this.data[pos].equals(object)) {\n                return this.count - pos;\n            }\n        }\n        return -1;\n    }\n\n    public int size() {\n        return this.count;\n    }\n\n    @Override\n    public String toString() {\n        if (this.size() <= 0) {\n            return \"\";\n        }\n        StringBuilder sb = new StringBuilder();\n        sb.append(\"[\" + this.data[0].toString());\n        for (int i = 1; i < this.size(); ++i) {\n            sb.append(\", \" + this.data[i].toString());\n        }\n        sb.append(\"]\");\n        return sb.toString();\n    }\n}"
+    },
+    {
+      "id": "ED01_INTRO",
+      "title": "Primeros Pasos: Mi Primer Hola Mundo y Uso del Editor",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "EDITOR -> INTRO",
+      "sectionTitle": "Módulo 0: Adaptación al Editor y Entorno",
+      "track": "Uso del Editor y Fundamentos",
+      "language": "python",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "¡Bienvenido a MEGA DEVS!\n\nEste primer ejercicio está diseñado para que te adaptes a usar el **Editor de Código** y la **Terminal de Ejecución**.\n\n### 🛠️ ¿Cómo usar la interfaz?\n1. **A la derecha** tienes el **Editor Monaco** donde puedes escribir y modificar tu código.\n2. Debajo del editor encontrarás los botones **`Ejecutar Código`** y **`Enviar Solución`**.\n   - **`Ejecutar Código`**: Ejecuta tu código de prueba usando los datos de la pestaña *Entrada Personalizada*.\n   - **`Enviar Solución`**: Evalúa automáticamente tu código contra todos los casos de prueba y te otorga puntaje.\n\n### 🎯 Tu Misión:\nModifica o mantén el código inicial para que imprima exactamente el siguiente texto:\n`¡Hola, Mundo desde MEGA DEVS!`",
+      "inputDesc": "No requiere datos de entrada.",
+      "outputDesc": "Imprimir exactamente: `¡Hola, Mundo desde MEGA DEVS!`",
+      "constraints": [
+        "Ninguna"
+      ],
+      "hints": [
+        {
+          "title": "Sintaxis en Python",
+          "content": "Usa `print(\"¡Hola, Mundo desde MEGA DEVS!\")` para mostrar el texto en pantalla."
+        },
+        {
+          "title": "Probar el Editor",
+          "content": "Presiona el botón verde 'Enviar Solución' cuando el texto esté listo."
+        }
+      ],
+      "examples": [
+        {
+          "input": "",
+          "output": "¡Hola, Mundo desde MEGA DEVS!"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "",
+          "expectedOutput": "¡Hola, Mundo desde MEGA DEVS!",
+          "isSample": true
+        }
+      ],
+      "starterCode": "# Escribe tu solución en Python aquí\n"
+    },
+    {
+      "id": "ED02_ENTRADA",
+      "title": "Uso del Editor: Lectura de Datos y Consola Personalizada",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "EDITOR -> INTRO",
+      "sectionTitle": "Módulo 0: Adaptación al Editor y Entorno",
+      "track": "Uso del Editor y Fundamentos",
+      "language": "python",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "En este ejercicio aprenderás a interactuar con la **Entrada Personalizada** en la terminal del editor.\n\n### 💡 ¿Cómo funciona la Entrada?\n- Cuando un programa solicita datos (por ejemplo, con `input()` en Python o `Scanner` en Java), el editor lee la información provista en la consola.\n- Puedes escribir datos de prueba en la pestaña **Entrada Personalizada** antes de hacer clic en **`Ejecutar Código`**.\n\n### 🎯 Tu Misión:\nLee un nombre $S$ desde la entrada estándar e imprime un saludo en el siguiente formato:\n`Bienvenido al editor, <S>!`",
+      "inputDesc": "Una línea que contiene el nombre $S$.",
+      "outputDesc": "Un saludo con la estructura `Bienvenido al editor, <S>!`.",
+      "constraints": [
+        "1 <= longitud de S <= 50"
+      ],
+      "hints": [
+        {
+          "title": "Lectura en Python",
+          "content": "Usa `nombre = input().strip()` para leer la línea de entrada."
+        },
+        {
+          "title": "Formateo f-string",
+          "content": "Puedes usar `print(f\"Bienvenido al editor, {nombre}!\")`."
+        }
+      ],
+      "examples": [
+        {
+          "input": "Alex",
+          "output": "Bienvenido al editor, Alex!"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "Alex",
+          "expectedOutput": "Bienvenido al editor, Alex!",
+          "isSample": true
+        },
+        {
+          "input": "Estudiante",
+          "expectedOutput": "Bienvenido al editor, Estudiante!",
+          "isSample": false
+        }
+      ],
+      "starterCode": "# Escribe tu solución en Python aquí\n"
+    },
+    {
+      "id": "PY01_SUMA",
+      "title": "Python Básico: Suma de Dos Números Enteros",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "PYTHON -> BASICO",
+      "sectionTitle": "Módulo Python: Fundamentos de Programación",
+      "track": "Fundamentos en Python",
+      "language": "python",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "En Python, la lectura de datos mediante `input()` o `sys.stdin.read()` retorna texto (strings). Para realizar operaciones matemáticas, debemos convertir ese texto a entero con `int()`.\n\n### 🎯 Tu Misión:\nDados dos números enteros $A$ y $B$, calcula e imprime la suma en el formato `Suma: <resultado>`.",
+      "inputDesc": "Dos enteros $A$ y $B$, cada uno en su propia línea.",
+      "outputDesc": "Imprimir `Suma: <A + B>`.",
+      "constraints": [
+        "-1000 <= A, B <= 1000"
+      ],
+      "hints": [
+        {
+          "title": "Lectura Múltiple",
+          "content": "Usa `import sys` y `sys.stdin.read().split()` para obtener todos los números de la entrada fácilmente."
+        }
+      ],
+      "examples": [
+        {
+          "input": "5\n7",
+          "output": "Suma: 12"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "5\n7",
+          "expectedOutput": "Suma: 12",
+          "isSample": true
+        },
+        {
+          "input": "100\n250",
+          "expectedOutput": "Suma: 350",
+          "isSample": false
+        },
+        {
+          "input": "-15\n20",
+          "expectedOutput": "Suma: 5",
+          "isSample": false
+        }
+      ],
+      "starterCode": "# Escribe tu solución en Python aquí\n"
+    },
+    {
+      "id": "PY02_PAR_IMPAR",
+      "title": "Python Básico: Verificación de Par o Impar",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "PYTHON -> BASICO",
+      "sectionTitle": "Módulo Python: Fundamentos de Programación",
+      "track": "Fundamentos en Python",
+      "language": "python",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "Las estructuras condicionales `if` y `else` en Python permiten tomar decisiones según se cumpla una condición.\nUn número entero es **par** si su resto al dividirlo entre 2 es cero (`num % 2 == 0`).\n\n### 🎯 Tu Misión:\nDado un número entero $N$, determina si es par o impar e imprime:\n- `El número <N> es PAR`\n- `El número <N> es IMPAR`",
+      "inputDesc": "Un entero $N$.",
+      "outputDesc": "`El número <N> es PAR` o `El número <N> es IMPAR`.",
+      "constraints": [
+        "-10000 <= N <= 10000"
+      ],
+      "hints": [
+        {
+          "title": "Operador Módulo",
+          "content": "Usa `if num % 2 == 0:` para evaluar si es par."
+        }
+      ],
+      "examples": [
+        {
+          "input": "8",
+          "output": "El número 8 es PAR"
+        },
+        {
+          "input": "15",
+          "output": "El número 15 es IMPAR"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "8",
+          "expectedOutput": "El número 8 es PAR",
+          "isSample": true
+        },
+        {
+          "input": "15",
+          "expectedOutput": "El número 15 es IMPAR",
+          "isSample": true
+        },
+        {
+          "input": "0",
+          "expectedOutput": "El número 0 es PAR",
+          "isSample": false
+        }
+      ],
+      "starterCode": "# Escribe tu solución en Python aquí\n"
+    },
+    {
+      "id": "PY03_TABLA",
+      "title": "Python Básico: Tabla de Multiplicar y Bucles",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "PYTHON -> BASICO",
+      "sectionTitle": "Módulo Python: Fundamentos de Programación",
+      "track": "Fundamentos en Python",
+      "language": "python",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "En Python, los bucles `for` combinados con la función `range(inicio, fin)` permiten iterar un número determinado de veces.\n\n### 🎯 Tu Misión:\nDado un entero $N$, genera su tabla de multiplicar del 1 al 5 en el siguiente formato:\n`<N> x 1 = <N*1>`\n`<N> x 2 = <N*2>`\n...\n`<N> x 5 = <N*5>`",
+      "inputDesc": "Un entero $N$.",
+      "outputDesc": "5 líneas mostrando las multiplicaciones de $N$ por 1, 2, 3, 4 y 5.",
+      "constraints": [
+        "1 <= N <= 100"
+      ],
+      "hints": [
+        {
+          "title": "Bucle Range",
+          "content": "Usa `for i in range(1, 6):` para iterar desde 1 hasta 5 inclusive."
+        }
+      ],
+      "examples": [
+        {
+          "input": "3",
+          "output": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "3",
+          "expectedOutput": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "isSample": true
+        },
+        {
+          "input": "7",
+          "expectedOutput": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "isSample": false
+        }
+      ],
+      "starterCode": "# Escribe tu solución en Python aquí\n"
+    },
+    {
+      "id": "OC01_INC",
+      "title": "Microoperaciones: Incremento de Registro ACC",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "OC -> MICROOPERACIONES",
+      "sectionTitle": "Módulo OC: Microoperaciones & Arquitectura",
+      "track": "Organización Computacional",
+      "language": "python",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "En arquitectura de computadoras, la microoperación `ACC+1 -> ACC` incrementa en 1 el valor almacenado en el Acumulador.\n\n### 🎯 Tu Misión:\nDado un valor entero inicial del registro `ACC`, simula el efecto de la microoperación e imprime el nuevo valor de `ACC`.",
+      "inputDesc": "Un entero representando el valor inicial de `ACC`.",
+      "outputDesc": "Un entero con el valor incrementado de `ACC`.",
+      "constraints": [
+        "0 <= ACC <= 4095"
+      ],
+      "hints": [
+        {
+          "title": "Incremento",
+          "content": "Lee la entrada con `acc = int(input())` e imprime `acc + 1`."
+        }
+      ],
+      "examples": [
+        {
+          "input": "5",
+          "output": "6"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "5",
+          "expectedOutput": "6",
+          "isSample": true
+        },
+        {
+          "input": "99",
+          "expectedOutput": "100",
+          "isSample": true
+        },
+        {
+          "input": "4095",
+          "expectedOutput": "4096",
+          "isSample": false
+        }
+      ],
+      "starterCode": "# Escribe tu solución en Python aquí\n"
+    },
+    {
+      "id": "OC02_SUMA",
+      "title": "Microoperaciones: Suma de ACC y GPR",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "OC -> MICROOPERACIONES",
+      "sectionTitle": "Módulo OC: Microoperaciones & Arquitectura",
+      "track": "Organización Computacional",
+      "language": "python",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "La ALU realiza operaciones aritméticas entre registros. La microoperación `ACC+GPR -> ACC` suma los valores del Acumulador (`ACC`) y el Registro General (`GPR`), guardando el resultado en `ACC`.\n\n### 🎯 Tu Misión:\nDados los enteros `ACC` y `GPR` en dos líneas separadas, imprime el nuevo valor de `ACC`.",
+      "inputDesc": "Dos líneas con los enteros `ACC` y `GPR`.",
+      "outputDesc": "El resultado de la suma.",
+      "constraints": [
+        "0 <= ACC, GPR <= 2048"
+      ],
+      "hints": [
+        {
+          "title": "Lectura de dos líneas",
+          "content": "Lee `acc = int(input())` y luego `gpr = int(input())`."
+        }
+      ],
+      "examples": [
+        {
+          "input": "10\n15",
+          "output": "25"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "10\n15",
+          "expectedOutput": "25",
+          "isSample": true
+        },
+        {
+          "input": "100\n200",
+          "expectedOutput": "300",
+          "isSample": true
+        },
+        {
+          "input": "0\n42",
+          "expectedOutput": "42",
+          "isSample": false
+        }
+      ],
+      "starterCode": "# Escribe tu solución en Python aquí\n"
+    },
+    {
+      "id": "OC03_COPIA",
+      "title": "Microoperaciones: Transferencia Dato a Memoria",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "OC -> MICROOPERACIONES",
+      "sectionTitle": "Módulo OC: Microoperaciones & Arquitectura",
+      "track": "Organización Computacional",
+      "language": "python",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "Para escribir en el bus de datos hacia memoria, la CPU ejecuta `GPR -> M`, copiando el contenido de GPR al registro de datos M.\n\n### 🎯 Tu Misión:\nDado el valor del registro `GPR`, imprime la transferencia en el formato exacto: `GPR: <valor> -> M: <valor>`.",
+      "inputDesc": "Un entero `GPR`.",
+      "outputDesc": "Formato `GPR: <valor> -> M: <valor>`.",
+      "constraints": [
+        "0 <= GPR <= 4095"
+      ],
+      "hints": [
+        {
+          "title": "Formateo",
+          "content": "Usa `f\"GPR: {val} -> M: {val}\"`."
+        }
+      ],
+      "examples": [
+        {
+          "input": "42",
+          "output": "GPR: 42 -> M: 42"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "42",
+          "expectedOutput": "GPR: 42 -> M: 42",
+          "isSample": true
+        },
+        {
+          "input": "255",
+          "expectedOutput": "GPR: 255 -> M: 255",
+          "isSample": false
+        }
+      ],
+      "starterCode": "# Escribe tu solución en Python aquí\n"
+    },
+    {
+      "id": "OC04_FLAGS",
+      "title": "Microoperaciones: Inversión de Flag de Estado",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "OC -> MICROOPERACIONES",
+      "sectionTitle": "Módulo OC: Microoperaciones & Arquitectura",
+      "track": "Organización Computacional",
+      "language": "python",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "El registro de flag `F` almacena un estado binario (0 o 1). La microoperación `! F` invierte el valor de `F` (0 pasa a 1, y 1 pasa a 0).\n\n### 🎯 Tu Misión:\nDado el valor inicial de `F` (0 o 1), imprime su estado invertido.",
+      "inputDesc": "Un bit entero `0` o `1`.",
+      "outputDesc": "El bit invertido (`1` o `0`).",
+      "constraints": [
+        "F in {0, 1}"
+      ],
+      "hints": [
+        {
+          "title": "NOT binario",
+          "content": "Puedes usar `1 - f` o `0 if f == 1 else 1`."
+        }
+      ],
+      "examples": [
+        {
+          "input": "0",
+          "output": "1"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "0",
+          "expectedOutput": "1",
+          "isSample": true
+        },
+        {
+          "input": "1",
+          "expectedOutput": "0",
+          "isSample": true
+        }
+      ],
+      "starterCode": "# Escribe tu solución en Python aquí\n"
+    },
+    {
+      "id": "OC05_MAR",
+      "title": "Microoperaciones: Carga de Dirección MAR",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "OC -> MICROOPERACIONES",
+      "sectionTitle": "Módulo OC: Microoperaciones & Arquitectura",
+      "track": "Organización Computacional",
+      "language": "python",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "En el ciclo Fetch de Von Neumann, `PC -> MAR` transfiere la dirección actual del contador de programa `PC` al registro de dirección `MAR`.\n\n### 🎯 Tu Misión:\nDado la dirección de instrucción `PC`, imprime el estado en formato `MAR = <PC>`.",
+      "inputDesc": "Un entero `PC`.",
+      "outputDesc": "Formato `MAR = <PC>`.",
+      "constraints": [
+        "0 <= PC <= 255"
+      ],
+      "hints": [
+        {
+          "title": "Formato",
+          "content": "Imprime `f\"MAR = {pc}\"`."
+        }
+      ],
+      "examples": [
+        {
+          "input": "12",
+          "output": "MAR = 12"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "12",
+          "expectedOutput": "MAR = 12",
+          "isSample": true
+        },
+        {
+          "input": "100",
+          "expectedOutput": "MAR = 100",
+          "isSample": false
+        }
+      ],
+      "starterCode": "# Escribe tu solución en Python aquí\n"
+    },
+    {
+      "id": "P02_POO",
+      "title": "POO Básico: Multiplicación de Números (Clase Multiplicador)",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "JAVA -> POO",
+      "sectionTitle": "Nivel 1 (Básico): Adaptación al Editor y Métodos",
+      "track": "Programación Orientada a Objetos",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "Ejercicio para adaptarse al editor con POO en Java.\n\nDebes crear una clase llamada `Multiplicador` con un método `multiplicar(int a, int b)` que retorne el producto de dos números enteros.\n\n1. Leer el entero $A$ en la primera línea.\n2. Leer el entero $B$ en la segunda línea.\n3. Instanciar la clase `Multiplicador`.\n4. Imprimir el resultado en formato `Resultado: <A * B>`.",
+      "inputDesc": "Dos enteros $A$ y $B$, cada uno en su propia línea.",
+      "outputDesc": "Imprimir 'Resultado: <A * B>'.",
+      "constraints": [
+        "1 <= A, B <= 1000"
+      ],
+      "hints": [
+        {
+          "title": "Clase y Métodos",
+          "content": "Crea la clase `class Multiplicador { public int multiplicar(int a, int b) { return a * b; } }`."
+        }
+      ],
+      "examples": [
+        {
+          "input": "5\n4",
+          "output": "Resultado: 20"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "5\n4",
+          "expectedOutput": "Resultado: 20",
+          "isSample": true
+        },
+        {
+          "input": "7\n3",
+          "expectedOutput": "Resultado: 21",
+          "isSample": true
+        },
+        {
+          "input": "12\n10",
+          "expectedOutput": "Resultado: 120",
+          "isSample": false
+        }
+      ],
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
+    },
+    {
+      "id": "P03_POO",
+      "title": "POO Básico: Determinación de Múltiplos (Clase Evaluador)",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "JAVA -> POO",
+      "sectionTitle": "Nivel 1 (Básico): Adaptación al Editor y Métodos",
+      "track": "Programación Orientada a Objetos",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "Ejercicio para evaluar condiciones numéricas usando POO.\n\nDebes crear la clase `EvaluadorMultiplo` con un método `esMultiplo(int numero, int base)` que retorne `true` si `numero` es múltiplo de `base` (`numero % base == 0`), y `false` en caso contrario.\n\n1. Leer el entero $A$ (número a evaluar) en la primera línea.\n2. Leer el entero $B$ (base/divisor) en la segunda línea.\n3. Instanciar `EvaluadorMultiplo`.\n4. Imprimir `<A> es multiplo de <B>` si es verdadero, o `<A> no es multiplo de <B>` si es falso.",
+      "inputDesc": "Dos enteros $A$ y $B$, uno por línea.",
+      "outputDesc": "Imprimir si $A$ es múltiplo de $B$.",
+      "constraints": [
+        "1 <= A, B <= 1000"
+      ],
+      "hints": [
+        {
+          "title": "Operador Módulo",
+          "content": "Un entero A es múltiplo de B si (A % B == 0)."
+        }
+      ],
+      "examples": [
+        {
+          "input": "15\n5",
+          "output": "15 es multiplo de 5"
+        },
+        {
+          "input": "14\n5",
+          "output": "14 no es multiplo de 5"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "15\n5",
+          "expectedOutput": "15 es multiplo de 5",
+          "isSample": true
+        },
+        {
+          "input": "14\n5",
+          "expectedOutput": "14 no es multiplo de 5",
+          "isSample": true
+        },
+        {
+          "input": "100\n10",
+          "expectedOutput": "100 es multiplo de 10",
+          "isSample": false
+        }
+      ],
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
+    },
+    {
+      "id": "P04_POO",
+      "title": "POO Básico: Cálculo de Promedio (Clase Calificador)",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "JAVA -> POO",
+      "sectionTitle": "Nivel 2 (Intermedio): Atributos y Arreglos en POO",
+      "track": "Programación Orientada a Objetos",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "Ejercicio para procesar arreglos y promedios dentro de una clase.\n\nDebes crear la clase `Calificador` con un método `calcularPromedio(double[] notas)` que reciba un arreglo de notas y retorne el promedio exacto.\n\n1. Leer un entero $N$ (cantidad de notas) en la primera línea.\n2. Leer $N$ números decimales (`double`), uno por línea.\n3. Instanciar `Calificador` y obtener el promedio.\n4. Imprimir la salida en formato `Promedio: <valor_con_1_decimal>`.",
+      "inputDesc": "Entero $N$ en la primera línea, seguido de $N$ notas decimales (una por línea).",
+      "outputDesc": "Imprimir 'Promedio: X.X'.",
+      "constraints": [
+        "1 <= N <= 100",
+        "0.0 <= Nota <= 10.0"
+      ],
+      "hints": [
+        {
+          "title": "Formateo de Decimales",
+          "content": "Usa `System.out.printf(\"Promedio: %.1f\\n\", promedio);` para mostrar 1 decimal."
+        }
+      ],
+      "examples": [
+        {
+          "input": "4\n8.0\n9.0\n7.5\n9.5",
+          "output": "Promedio: 8.5"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "4\n8.0\n9.0\n7.5\n9.5",
+          "expectedOutput": "Promedio: 8.5",
+          "isSample": true
+        },
+        {
+          "input": "3\n10.0\n6.0\n8.0",
+          "expectedOutput": "Promedio: 8.0",
+          "isSample": true
+        },
+        {
+          "input": "2\n7.0\n8.0",
+          "expectedOutput": "Promedio: 7.5",
+          "isSample": false
+        }
+      ],
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
+    },
+    {
+      "id": "P10_ARREGLOS",
+      "title": "Multiplicación de Elementos en un Arreglo",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "JAVA -> ARREGLOS",
+      "sectionTitle": "Nivel 1 (Fácil): Fundamentos de Arreglos",
+      "track": "Arreglos y ArrayList",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "Dado un arreglo unidimensional de $N$ enteros, calcula el producto acumulado (multiplicación) de todos sus elementos.",
+      "inputDesc": "Entero $N$ en la primera línea, seguido de $N$ enteros (uno por línea).",
+      "outputDesc": "Imprimir 'Producto: <resultado>'.",
+      "constraints": [
+        "1 <= N <= 10"
+      ],
+      "hints": [
+        {
+          "title": "Acumulador",
+          "content": "Inicializa tu variable acumuladora en 1 antes de multiplicar en el bucle."
+        }
+      ],
+      "examples": [
+        {
+          "input": "4\n2\n3\n4\n5",
+          "output": "Producto: 120"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "4\n2\n3\n4\n5",
+          "expectedOutput": "Producto: 120",
+          "isSample": true
+        },
+        {
+          "input": "3\n1\n5\n10",
+          "expectedOutput": "Producto: 50",
+          "isSample": false
+        }
+      ],
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
+    },
+    {
+      "id": "P11_ARREGLOS",
+      "title": "Conteo de Múltiplos de K en un Arreglo",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "JAVA -> ARREGLOS",
+      "sectionTitle": "Nivel 1 (Fácil): Fundamentos de Arreglos",
+      "track": "Arreglos y ArrayList",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "Dado un arreglo de $N$ enteros y un entero $K$, determina cuántos elementos del arreglo son múltiplos exactos de $K$.",
+      "inputDesc": "Entero $N$ en la primera línea, seguido de $N$ enteros (uno por línea) y al final el entero $K$ en una nueva línea.",
+      "outputDesc": "Imprimir 'Múltiplos de <K>: <cantidad>'.",
+      "constraints": [
+        "1 <= N <= 100",
+        "1 <= K <= 100"
+      ],
+      "hints": [
+        {
+          "title": "Operador Módulo",
+          "content": "Usa `x % K == 0` para comprobar si `x` es múltiplo de `K`."
+        }
+      ],
+      "examples": [
+        {
+          "input": "5\n10\n15\n7\n20\n12\n5",
+          "output": "Múltiplos de 5: 3"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "5\n10\n15\n7\n20\n12\n5",
+          "expectedOutput": "Múltiplos de 5: 3",
+          "isSample": true
+        },
+        {
+          "input": "4\n2\n4\n6\n8\n2",
+          "expectedOutput": "Múltiplos de 2: 4",
+          "isSample": false
+        }
+      ],
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
+    },
+    {
+      "id": "P12_ARREGLOS",
+      "title": "Promedio Simple en Arreglo de Enteros",
+      "difficulty": "Fácil",
+      "points": 100,
+      "category": "JAVA -> ARREGLOS",
+      "sectionTitle": "Nivel 1 (Fácil): Fundamentos de Arreglos",
+      "track": "Arreglos y ArrayList",
+      "timeLimit": 1,
+      "memoryLimit": 32,
+      "description": "Dado un arreglo unidimensional de $N$ enteros, calcula el promedio decimal simple de sus elementos.",
+      "inputDesc": "Entero $N$ en la primera línea, seguido de $N$ enteros (uno por línea).",
+      "outputDesc": "Imprimir 'Promedio: <resultado_con_1_decimal>'.",
+      "constraints": [
+        "1 <= N <= 100"
+      ],
+      "hints": [
+        {
+          "title": "Cálculo de Promedio",
+          "content": "Suma los elementos en una variable double y divide entre N."
+        }
+      ],
+      "examples": [
+        {
+          "input": "4\n10\n20\n30\n40",
+          "output": "Promedio: 25.0"
+        }
+      ],
+      "testcases": [
+        {
+          "input": "4\n10\n20\n30\n40",
+          "expectedOutput": "Promedio: 25.0",
+          "isSample": true
+        },
+        {
+          "input": "5\n1\n2\n3\n4\n5",
+          "expectedOutput": "Promedio: 3.0",
+          "isSample": false
+        }
+      ],
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}"
     }
   ],
   "submissions": [
+    {
+      "id": "SUB-875794",
+      "problemId": "P06_ARREGLOS",
+      "problemTitle": "Rotación de Arreglo a la Derecha",
+      "studentName": "wazaa",
+      "timestamp": "19/8/2026, 12:58:42",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 1 pruebas.",
+      "score": 0,
+      "timeMs": 494,
+      "memoryMB": 15.3,
+      "code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Escribe tu solución en Java aquí\n        \n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "",
+          "expected": "4 5 1 2 3",
+          "timeMs": 494
+        }
+      ]
+    },
+    {
+      "id": "SUB-158523",
+      "problemId": "P02_POO",
+      "problemTitle": "POO Básico: Multiplicación de Números (Clase Multiplicador)",
+      "studentName": "wazaa",
+      "timestamp": "19/8/2026, 12:58:29",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 536,
+      "memoryMB": 15.8,
+      "code": "import java.util.Scanner;\n\nclass Multiplicador {\n    public int multiplicar(int a, int b) {\n        // Tu solución aquí\n        return a * b;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = sc.nextInt();\n        int b = sc.nextInt();\n        \n        Multiplicador m = new Multiplicador();\n        System.out.println(\"Resultado: \" + m.multiplicar(a, b));\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Resultado: 20",
+          "expected": "Resultado: 20",
+          "timeMs": 579
+        },
+        {
+          "id": 2,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Resultado: 21",
+          "expected": "Resultado: 21",
+          "timeMs": 506
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Resultado: 120",
+          "expected": "Resultado: 120",
+          "timeMs": 523
+        }
+      ]
+    },
+    {
+      "id": "SUB-461533",
+      "problemId": "ED01_INTRO",
+      "problemTitle": "Primeros Pasos: Mi Primer Hola Mundo y Uso del Editor",
+      "studentName": "wazaa",
+      "timestamp": "19/8/2026, 12:57:02",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 1 pruebas.",
+      "score": 0,
+      "timeMs": 49,
+      "memoryMB": 9.9,
+      "code": "# Escribe tu solución en Python aquí\n",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "",
+          "expected": "¡Hola, Mundo desde MEGA DEVS!",
+          "timeMs": 49
+        }
+      ]
+    },
+    {
+      "id": "SUB-912958",
+      "problemId": "P04_POO",
+      "problemTitle": "POO Básico: Cálculo de Promedio (Clase Calificador)",
+      "studentName": "Alumno #533",
+      "timestamp": "19/8/2026, 12:55:56",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 546,
+      "memoryMB": 15.8,
+      "code": "import java.util.Scanner;\n\nclass Calificador {\n    public double calcularPromedio(double[] notas) {\n        // Tu solución aquí\n        double suma = 0;\n        for (double n : notas) {\n            suma += n;\n        }\n        return suma / notas.length;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        double[] notas = new double[n];\n        for (int i = 0; i < n; i++) {\n            notas[i] = sc.nextDouble();\n        }\n        \n        Calificador cal = new Calificador();\n        double prom = cal.calcularPromedio(notas);\n        System.out.printf(\"Promedio: %.1f\", prom);\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Promedio: 8.5",
+          "expected": "Promedio: 8.5",
+          "timeMs": 571
+        },
+        {
+          "id": 2,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Promedio: 8.0",
+          "expected": "Promedio: 8.0",
+          "timeMs": 541
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Promedio: 7.5",
+          "expected": "Promedio: 7.5",
+          "timeMs": 526
+        }
+      ]
+    },
+    {
+      "id": "SUB-931088",
+      "problemId": "P04_POO",
+      "problemTitle": "POO Básico: Cálculo de Promedio (Clase Calificador)",
+      "studentName": "Alumno #437",
+      "timestamp": "19/8/2026, 12:55:00",
+      "verdict": "RUNTIME_ERROR",
+      "verdictTitle": "Pasaron 0 de 3 pruebas.",
+      "score": 0,
+      "timeMs": 539,
+      "memoryMB": 15.4,
+      "code": "import java.util.Scanner;\n\nclass Calificador {\n    public double calcularPromedio(double[] notas) {\n        // Tu solución aquí\n        double suma = 0;\n        for (double n : notas) {\n            suma += n;\n        }\n        return suma / notas.length;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        double[] notas = new double[n];\n        for (int i = 0; i < n; i++) {\n            notas[i] = sc.nextDouble();\n        }\n        \n        Calificador cal = new Calificador();\n        double prom = cal.calcularPromedio(notas);\n        System.out.printf(\"Promedio: %.1f\", prom);\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 8.5",
+          "timeMs": 529
+        },
+        {
+          "id": 2,
+          "isSample": true,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 8.0",
+          "timeMs": 544
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 7.5",
+          "timeMs": 545
+        }
+      ]
+    },
+    {
+      "id": "SUB-350532",
+      "problemId": "P04_POO",
+      "problemTitle": "POO Básico: Cálculo de Promedio (Clase Calificador)",
+      "studentName": "Alumno",
+      "timestamp": "19/8/2026, 12:53:27",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 549,
+      "memoryMB": 15.1,
+      "code": "import java.util.Scanner;\n\nclass Calificador {\n    public double calcularPromedio(double[] notas) {\n        double suma = 0;\n        for (double n : notas) {\n            suma += n;\n        }\n        return suma / notas.length;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        double[] notas = new double[n];\n        for (int i = 0; i < n; i++) {\n            notas[i] = sc.nextDouble();\n        }\n        \n        Calificador cal = new Calificador();\n        double prom = cal.calcularPromedio(notas);\n        System.out.printf(\"Promedio: %.1f\", prom);\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Promedio: 8.5",
+          "expected": "Promedio: 8.5",
+          "timeMs": 551
+        },
+        {
+          "id": 2,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Promedio: 8.0",
+          "expected": "Promedio: 8.0",
+          "timeMs": 561
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Promedio: 7.5",
+          "expected": "Promedio: 7.5",
+          "timeMs": 535
+        }
+      ]
+    },
+    {
+      "id": "SUB-167085",
+      "problemId": "P04_POO",
+      "problemTitle": "POO Básico: Cálculo de Promedio (Clase Calificador)",
+      "studentName": "Alumno #614",
+      "timestamp": "19/8/2026, 12:51:49",
+      "verdict": "RUNTIME_ERROR",
+      "verdictTitle": "Pasaron 0 de 3 pruebas.",
+      "score": 0,
+      "timeMs": 575,
+      "memoryMB": 15.3,
+      "code": "import java.util.Scanner;\n\nclass Calificador {\n    public double calcularPromedio(double[] notas) {\n        // Tu solución aquí\n        double suma = 0;\n        for (double n : notas) {\n            suma += n;\n        }\n        return suma / notas.length;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        double[] notas = new double[n];\n        for (int i = 0; i < n; i++) {\n            notas[i] = sc.nextDouble();\n        }\n        \n        Calificador cal = new Calificador();\n        double prom = cal.calcularPromedio(notas);\n        System.out.printf(\"Promedio: %.1f\", prom);\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 8.5",
+          "timeMs": 537
+        },
+        {
+          "id": 2,
+          "isSample": true,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 8.0",
+          "timeMs": 595
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 7.5",
+          "timeMs": 592
+        }
+      ]
+    },
+    {
+      "id": "SUB-635492",
+      "problemId": "P04_POO",
+      "problemTitle": "POO Básico: Cálculo de Promedio (Clase Calificador)",
+      "studentName": "Alumno #614",
+      "timestamp": "19/8/2026, 12:50:12",
+      "verdict": "RUNTIME_ERROR",
+      "verdictTitle": "Pasaron 0 de 3 pruebas.",
+      "score": 0,
+      "timeMs": 556,
+      "memoryMB": 15.4,
+      "code": "import java.util.Scanner;\n\nclass Calificador {\n    public double calcularPromedio(double[] notas) {\n        // Tu solución aquí\n        double suma = 0;\n        for (double n : notas) {\n            suma += n;\n        }\n        return suma / notas.length;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        double[] notas = new double[n];\n        for (int i = 0; i < n; i++) {\n            notas[i] = sc.nextDouble();\n        }\n        \n        Calificador cal = new Calificador();\n        double prom = cal.calcularPromedio(notas);\n        System.out.printf(\"Promedio: %.1f\", prom);\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 8.5",
+          "timeMs": 566
+        },
+        {
+          "id": 2,
+          "isSample": true,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 8.0",
+          "timeMs": 529
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 7.5",
+          "timeMs": 574
+        }
+      ]
+    },
+    {
+      "id": "SUB-787936",
+      "problemId": "P04_POO",
+      "problemTitle": "POO Básico: Cálculo de Promedio (Clase Calificador)",
+      "studentName": "Alumno #611",
+      "timestamp": "19/8/2026, 12:40:52",
+      "verdict": "RUNTIME_ERROR",
+      "verdictTitle": "Pasaron 0 de 3 pruebas.",
+      "score": 0,
+      "timeMs": 546,
+      "memoryMB": 15.9,
+      "code": "import java.util.Scanner;\n\nclass Calificador {\n    public double calcularPromedio(double[] notas) {\n        // Tu solución aquí\n        double suma = 0;\n        for (double n : notas) {\n            suma += n;\n        }\n        return suma / notas.length;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        double[] notas = new double[n];\n        for (int i = 0; i < n; i++) {\n            notas[i] = sc.nextDouble();\n        }\n        \n        Calificador cal = new Calificador();\n        double prom = cal.calcularPromedio(notas);\n        System.out.printf(\"Promedio: %.1f\", prom);\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 8.5",
+          "timeMs": 545
+        },
+        {
+          "id": 2,
+          "isSample": true,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 8.0",
+          "timeMs": 549
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": false,
+          "verdict": "RUNTIME_ERROR",
+          "actual": "Runtime Error:\nException in thread \"main\" java.util.InputMismatchException\r\n\tat java.util.Scanner.throwFor(Scanner.java:864)\r\n\tat java.util.Scanner.next(Scanner.java:1485)\r\n\tat java.util.Scanner.nextDouble(Scanner.java:2413)\r\n\tat Main.main(Main.java:20)\r\n",
+          "expected": "Promedio: 7.5",
+          "timeMs": 544
+        }
+      ]
+    },
+    {
+      "id": "SUB-873704",
+      "problemId": "P04_POO",
+      "problemTitle": "POO Básico: Cálculo de Promedio (Clase Calificador)",
+      "studentName": "Alumno #611",
+      "timestamp": "19/8/2026, 12:40:22",
+      "verdict": "COMPILATION_ERROR",
+      "verdictTitle": "Pasaron 0 de 3 pruebas.",
+      "score": 0,
+      "timeMs": 327,
+      "memoryMB": 15.1,
+      "code": "import java.util.Scanner;\n\nclass Calificador {\n    public double calcularPromedio(double[] notas) {\n        // Tu solución aquí\n        double suma = 0;\n        for (double n : notas) {\n            suma += n;\n        }\n        return suma / notas.length;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        double[] notas = new double[n];\n        for (int i = 0; i < n; i++) {\n            notas[i] = sc.nextDouble();\n        }\n        \n        Calificador cal = new Calificador();\n        double prom = cal.calcularPromedio(notas);\n        System.out.printf(\"Promedio: %.1f\n\", prom);\n    }\n}",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "COMPILATION_ERROR",
+          "actual": "Compilation / Syntax Error:\nMain.java:25: error: unclosed string literal\r\n        System.out.printf(\"Promedio: %.1f\r\n                          ^\r\nMain.java:26: error: unclosed string literal\r\n\", prom);\r\n^\r\n2 errors\r\n",
+          "expected": "Promedio: 8.5",
+          "timeMs": 413
+        },
+        {
+          "id": 2,
+          "isSample": true,
+          "passed": false,
+          "verdict": "COMPILATION_ERROR",
+          "actual": "Compilation / Syntax Error:\nMain.java:25: error: unclosed string literal\r\n        System.out.printf(\"Promedio: %.1f\r\n                          ^\r\nMain.java:26: error: unclosed string literal\r\n\", prom);\r\n^\r\n2 errors\r\n",
+          "expected": "Promedio: 8.0",
+          "timeMs": 281
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": false,
+          "verdict": "COMPILATION_ERROR",
+          "actual": "Compilation / Syntax Error:\nMain.java:25: error: unclosed string literal\r\n        System.out.printf(\"Promedio: %.1f\r\n                          ^\r\nMain.java:26: error: unclosed string literal\r\n\", prom);\r\n^\r\n2 errors\r\n",
+          "expected": "Promedio: 7.5",
+          "timeMs": 286
+        }
+      ]
+    },
+    {
+      "id": "SUB-524204",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #356",
+      "timestamp": "17/8/2026, 12:44:52",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 51,
+      "memoryMB": 9.5,
+      "code": "n = int(input())\nfor i in range(1, 6):\n    print(n, \"x\", i, \"=\", n*i)\n",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 50
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 51
+        }
+      ]
+    },
+    {
+      "id": "SUB-284435",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #356",
+      "timestamp": "17/8/2026, 12:43:43",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 2 pruebas.",
+      "score": 0,
+      "timeMs": 50,
+      "memoryMB": 9.8,
+      "code": "n = int(input())\nfor i in range(1, 6):\n    print(n, \" x \", i, \" = \", n*i)\n",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "3  x  1  =  3\n3  x  2  =  6\n3  x  3  =  9\n3  x  4  =  12\n3  x  5  =  15",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 50
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "7  x  1  =  7\n7  x  2  =  14\n7  x  3  =  21\n7  x  4  =  28\n7  x  5  =  35",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 49
+        }
+      ]
+    },
+    {
+      "id": "SUB-478984",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #407",
+      "timestamp": "17/8/2026, 12:41:45",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 60,
+      "memoryMB": 8.9,
+      "code": "n = int(input())\nfor i in range(1, 6):\n    print(n, \" x \", i, \" = \", n*i, sep=\"\")\n",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 70
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 50
+        }
+      ]
+    },
+    {
+      "id": "SUB-423043",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #407",
+      "timestamp": "17/8/2026, 12:40:02",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 2 pruebas.",
+      "score": 0,
+      "timeMs": 50,
+      "memoryMB": 9.9,
+      "code": "n = int(input().strip())\n\nfor i in range(1, 6):\n    print(n, \" x \", i, \" = \", n*i)",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "3  x  1  =  3\n3  x  2  =  6\n3  x  3  =  9\n3  x  4  =  12\n3  x  5  =  15",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 49
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "7  x  1  =  7\n7  x  2  =  14\n7  x  3  =  21\n7  x  4  =  28\n7  x  5  =  35",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 50
+        }
+      ]
+    },
+    {
+      "id": "SUB-919106",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #407",
+      "timestamp": "17/8/2026, 12:39:50",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 2 pruebas.",
+      "score": 0,
+      "timeMs": 50,
+      "memoryMB": 9.4,
+      "code": "n = int(input().strip())\n\nfor i in range(1, 6):\n    print(n, \" x \", i, \" = \", n*i)",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "3  x  1  =  3\n3  x  2  =  6\n3  x  3  =  9\n3  x  4  =  12\n3  x  5  =  15",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 50
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "7  x  1  =  7\n7  x  2  =  14\n7  x  3  =  21\n7  x  4  =  28\n7  x  5  =  35",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 49
+        }
+      ]
+    },
+    {
+      "id": "SUB-131367",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #407",
+      "timestamp": "17/8/2026, 12:38:55",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 2 pruebas.",
+      "score": 0,
+      "timeMs": 59,
+      "memoryMB": 9.3,
+      "code": "n = int(input())\n\nfor i in range(1, 6):\n    print(n, \" x \", i, \" = \", n*i)",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "3  x  1  =  3\n3  x  2  =  6\n3  x  3  =  9\n3  x  4  =  12\n3  x  5  =  15",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 62
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "7  x  1  =  7\n7  x  2  =  14\n7  x  3  =  21\n7  x  4  =  28\n7  x  5  =  35",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 55
+        }
+      ]
+    },
+    {
+      "id": "SUB-906084",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #407",
+      "timestamp": "17/8/2026, 12:38:14",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 2 pruebas.",
+      "score": 0,
+      "timeMs": 50,
+      "memoryMB": 9.8,
+      "code": "n = int(input())\n\nfor i in range(1, 5):\n    print(n, \" x \", i, \" = \", n*(i))",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "3  x  1  =  3\n3  x  2  =  6\n3  x  3  =  9\n3  x  4  =  12",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 50
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "7  x  1  =  7\n7  x  2  =  14\n7  x  3  =  21\n7  x  4  =  28",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 49
+        }
+      ]
+    },
+    {
+      "id": "SUB-974756",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #407",
+      "timestamp": "17/8/2026, 12:38:11",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 2 pruebas.",
+      "score": 0,
+      "timeMs": 50,
+      "memoryMB": 9,
+      "code": "n = int(input())\n\nfor i in range(1, 5):\n    print(n, \" x \", i, \" = \", n*(i))",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "3  x  1  =  3\n3  x  2  =  6\n3  x  3  =  9\n3  x  4  =  12",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 50
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "7  x  1  =  7\n7  x  2  =  14\n7  x  3  =  21\n7  x  4  =  28",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 49
+        }
+      ]
+    },
+    {
+      "id": "SUB-401339",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #407",
+      "timestamp": "17/8/2026, 12:37:23",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 2 pruebas.",
+      "score": 0,
+      "timeMs": 54,
+      "memoryMB": 9.9,
+      "code": "n = int(input())\n\nfor i in range(5):\n    print(n, \" x \", i+1, \" = \", n*(i+1),\"\\n\")",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "3  x  1  =  3\n\n3  x  2  =  6\n\n3  x  3  =  9\n\n3  x  4  =  12\n\n3  x  5  =  15",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 53
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "7  x  1  =  7\n\n7  x  2  =  14\n\n7  x  3  =  21\n\n7  x  4  =  28\n\n7  x  5  =  35",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 55
+        }
+      ]
+    },
+    {
+      "id": "SUB-801615",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #407",
+      "timestamp": "17/8/2026, 12:36:15",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 2 pruebas.",
+      "score": 0,
+      "timeMs": 50,
+      "memoryMB": 9.9,
+      "code": "n = int(input(\"\"))\n\nfor i in range(5):\n    print(n, \" x \", i+1, \" = \", n*(i+1))",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "3  x  1  =  3\n3  x  2  =  6\n3  x  3  =  9\n3  x  4  =  12\n3  x  5  =  15",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 50
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "7  x  1  =  7\n7  x  2  =  14\n7  x  3  =  21\n7  x  4  =  28\n7  x  5  =  35",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 50
+        }
+      ]
+    },
+    {
+      "id": "SUB-498834",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "Alumno #407",
+      "timestamp": "17/8/2026, 12:35:25",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 2 pruebas.",
+      "score": 0,
+      "timeMs": 50,
+      "memoryMB": 9.7,
+      "code": "n = int(input(\"\"))\n\nfor i in range(5):\n    print(n, \" x \", i+1, \" = \", n*(i+1))",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "3  x  1  =  3\n3  x  2  =  6\n3  x  3  =  9\n3  x  4  =  12\n3  x  5  =  15",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 51
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "7  x  1  =  7\n7  x  2  =  14\n7  x  3  =  21\n7  x  4  =  28\n7  x  5  =  35",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 49
+        }
+      ]
+    },
+    {
+      "id": "SUB-188042",
+      "problemId": "ED01_INTRO",
+      "problemTitle": "Primeros Pasos: Mi Primer Hola Mundo y Uso del Editor",
+      "studentName": "Alumno #407",
+      "timestamp": "17/8/2026, 12:32:24",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 50,
+      "memoryMB": 8.3,
+      "code": "# --- CURSO MEGA DEVS: USO DEL EDITOR ---\n# 1. Modifica o revisa el texto dentro de print(...)\n# 2. Presiona \"Ejecutar Código\" para probar o \"Enviar Solución\" para evaluar.\n\nprint(\"¡Hola, Mundo desde MEGA DEVS!\")\n",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "¡Hola, Mundo desde MEGA DEVS!",
+          "expected": "¡Hola, Mundo desde MEGA DEVS!",
+          "timeMs": 50
+        }
+      ]
+    },
+    {
+      "id": "SUB-917538",
+      "problemId": "PY03_TABLA",
+      "problemTitle": "Python Básico: Tabla de Multiplicar y Bucles",
+      "studentName": "TestUser",
+      "timestamp": "17/8/2026, 11:48:56",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 54,
+      "memoryMB": 9.1,
+      "code": "n = int(input().strip())\nfor i in range(1, 6):\n    print(f\"{n} x {i} = {n * i}\")",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15",
+          "timeMs": 58
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "expected": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35",
+          "timeMs": 50
+        }
+      ]
+    },
+    {
+      "id": "SUB-200855",
+      "problemId": "PY02_PAR_IMPAR",
+      "problemTitle": "Python Básico: Verificación de Par o Impar",
+      "studentName": "TestUser",
+      "timestamp": "17/8/2026, 11:48:56",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 51,
+      "memoryMB": 9.8,
+      "code": "num = int(input().strip())\nif num % 2 == 0:\n    print(f\"El número {num} es PAR\")\nelse:\n    print(f\"El número {num} es IMPAR\")",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "El número 8 es PAR",
+          "expected": "El número 8 es PAR",
+          "timeMs": 57
+        },
+        {
+          "id": 2,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "El número 15 es IMPAR",
+          "expected": "El número 15 es IMPAR",
+          "timeMs": 47
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "El número 0 es PAR",
+          "expected": "El número 0 es PAR",
+          "timeMs": 48
+        }
+      ]
+    },
+    {
+      "id": "SUB-560398",
+      "problemId": "PY01_SUMA",
+      "problemTitle": "Python Básico: Suma de Dos Números Enteros",
+      "studentName": "TestUser",
+      "timestamp": "17/8/2026, 11:48:56",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 52,
+      "memoryMB": 10,
+      "code": "import sys\ndatos = sys.stdin.read().split()\nif len(datos) >= 2:\n    print(f\"Suma: {int(datos[0]) + int(datos[1])}\")",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Suma: 12",
+          "expected": "Suma: 12",
+          "timeMs": 54
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Suma: 350",
+          "expected": "Suma: 350",
+          "timeMs": 51
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Suma: 5",
+          "expected": "Suma: 5",
+          "timeMs": 50
+        }
+      ]
+    },
+    {
+      "id": "SUB-825699",
+      "problemId": "ED02_ENTRADA",
+      "problemTitle": "Uso del Editor: Lectura de Datos y Consola Personalizada",
+      "studentName": "TestUser",
+      "timestamp": "17/8/2026, 11:48:56",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 54,
+      "memoryMB": 9.8,
+      "code": "nombre = input().strip()\nprint(f\"Bienvenido al editor, {nombre}!\")",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Bienvenido al editor, Alex!",
+          "expected": "Bienvenido al editor, Alex!",
+          "timeMs": 54
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Bienvenido al editor, Estudiante!",
+          "expected": "Bienvenido al editor, Estudiante!",
+          "timeMs": 54
+        }
+      ]
+    },
+    {
+      "id": "SUB-837903",
+      "problemId": "ED01_INTRO",
+      "problemTitle": "Primeros Pasos: Mi Primer Hola Mundo y Uso del Editor",
+      "studentName": "TestUser",
+      "timestamp": "17/8/2026, 11:48:55",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 67,
+      "memoryMB": 9,
+      "code": "print(\"¡Hola, Mundo desde MEGA DEVS!\")",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "¡Hola, Mundo desde MEGA DEVS!",
+          "expected": "¡Hola, Mundo desde MEGA DEVS!",
+          "timeMs": 67
+        }
+      ]
+    },
+    {
+      "id": "SUB-742802",
+      "problemId": "PY01_SUMA",
+      "problemTitle": "Python Básico: Suma de Dos Números Enteros",
+      "studentName": "Alex",
+      "timestamp": "17/8/2026, 11:48:48",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 50,
+      "memoryMB": 9.8,
+      "code": "import sys\ndatos = sys.stdin.read().split()\nif len(datos) >= 2:\n    print(f\"Suma: {int(datos[0]) + int(datos[1])}\")\n",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Suma: 12",
+          "expected": "Suma: 12",
+          "timeMs": 49
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Suma: 350",
+          "expected": "Suma: 350",
+          "timeMs": 49
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Suma: 5",
+          "expected": "Suma: 5",
+          "timeMs": 51
+        }
+      ]
+    },
+    {
+      "id": "SUB-111942",
+      "problemId": "ED01_INTRO",
+      "problemTitle": "Primeros Pasos: Mi Primer Hola Mundo y Uso del Editor",
+      "studentName": "Alex",
+      "timestamp": "17/8/2026, 11:48:48",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 50,
+      "memoryMB": 8.6,
+      "code": "print(\"¡Hola, Mundo desde MEGA DEVS!\")",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "¡Hola, Mundo desde MEGA DEVS!",
+          "expected": "¡Hola, Mundo desde MEGA DEVS!",
+          "timeMs": 50
+        }
+      ]
+    },
+    {
+      "id": "SUB-156284",
+      "problemId": "PY01_SUMA",
+      "problemTitle": "Python Básico: Suma de Dos Números Enteros",
+      "studentName": "Alex",
+      "timestamp": "17/8/2026, 11:48:34",
+      "verdict": "ACCEPTED",
+      "verdictTitle": "¡Excelente! Solución Correcta.",
+      "score": 100,
+      "timeMs": 55,
+      "memoryMB": 9.7,
+      "code": "import sys\ndatos = sys.stdin.read().split()\nif len(datos) >= 2:\n    print(f\"Suma: {int(datos[0]) + int(datos[1])}\")\n",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Suma: 12",
+          "expected": "Suma: 12",
+          "timeMs": 56
+        },
+        {
+          "id": 2,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Suma: 350",
+          "expected": "Suma: 350",
+          "timeMs": 54
+        },
+        {
+          "id": 3,
+          "isSample": false,
+          "passed": true,
+          "verdict": "ACCEPTED",
+          "actual": "Suma: 5",
+          "expected": "Suma: 5",
+          "timeMs": 54
+        }
+      ]
+    },
+    {
+      "id": "SUB-140725",
+      "problemId": "ED01_INTRO",
+      "problemTitle": "Primeros Pasos: Mi Primer Hola Mundo y Uso del Editor",
+      "studentName": "Alex",
+      "timestamp": "17/8/2026, 11:48:34",
+      "verdict": "WRONG_ANSWER",
+      "verdictTitle": "Pasaron 0 de 1 pruebas.",
+      "score": 0,
+      "timeMs": 49,
+      "memoryMB": 8,
+      "code": "print(\"¡Hola, Mundo desde MEGA DEVS!\")",
+      "testcaseResults": [
+        {
+          "id": 1,
+          "isSample": true,
+          "passed": false,
+          "verdict": "WRONG_ANSWER",
+          "actual": "�Hola, Mundo desde MEGA DEVS!",
+          "expected": "¡Hola, Mundo desde MEGA DEVS!",
+          "timeMs": 49
+        }
+      ]
+    },
     {
       "id": "SUB-304163",
       "problemId": "P01_POO",
@@ -796,13 +2603,24 @@
     }
   ],
   "user": {
-    "score": 200,
+    "score": 900,
     "solved": [
       "P01_POO",
-      "P1_PILAS"
+      "P1_PILAS",
+      "PY01_SUMA",
+      "ED01_INTRO",
+      "ED02_ENTRADA",
+      "PY02_PAR_IMPAR",
+      "PY03_TABLA",
+      "P04_POO",
+      "P02_POO"
     ],
     "attempted": [
-      "P01_POO"
+      "P01_POO",
+      "ED01_INTRO",
+      "PY03_TABLA",
+      "P04_POO",
+      "P06_ARREGLOS"
     ]
   }
 }

@@ -89,6 +89,8 @@ export const ProblemWorkspace = ({ problem, onBack, onRunCode, onSubmitCode, eva
     const hasAuxiliary = problem.auxiliaryCode || problem.category?.includes('PILAS');
     const auxFileName = problem.auxiliaryFilename || 'Stack.java';
 
+    const isPythonProblem = problem.language === 'python' || (problem.category && (problem.category.includes('PYTHON') || problem.category.includes('EDITOR')));
+
     return (
         <div className="view-page workspace-mode">
             {/* Top Workspace Header */}
@@ -101,8 +103,8 @@ export const ProblemWorkspace = ({ problem, onBack, onRunCode, onSubmitCode, eva
                     <h2 style={{ fontSize: '1rem', fontFamily: 'var(--font-straight)', margin: 0 }}>{problem.id} - {problem.title}</h2>
                     <span className={`badge-diff ${problem.difficulty}`}>{problem.difficulty}</span>
                 </div>
-                <div style={{ background: 'var(--bg-surface-elevated)', padding: '0.3rem 0.6rem', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700, color: 'var(--brand-java)', border: '1px solid var(--border-color)' }}>
-                    Java 17
+                <div style={{ background: 'var(--bg-surface-elevated)', padding: '0.3rem 0.6rem', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700, color: isPythonProblem ? '#38bdf8' : 'var(--brand-java)', border: '1px solid var(--border-color)' }}>
+                    {isPythonProblem ? 'Python 3.14' : 'Java 17'}
                 </div>
             </div>
 
@@ -255,6 +257,7 @@ export const ProblemWorkspace = ({ problem, onBack, onRunCode, onSubmitCode, eva
                                 setCode={setCode}
                                 onResetCode={() => setCode(problem.starterCode)}
                                 onFormatCode={() => setCode(code)}
+                                language={isPythonProblem ? 'python' : 'java'}
                             />
                         </div>
 
