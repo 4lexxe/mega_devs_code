@@ -47,11 +47,11 @@ function executeJavaCode(code, inputStr, auxFile = null) {
 
     try {
         const filesToCompile = fs.readdirSync(runDir).filter(f => f.endsWith('.java')).join(' ');
-        execSync(`javac ${filesToCompile}`, { cwd: runDir, timeout: 6000, stdio: ['pipe', 'pipe', 'pipe'] });
+        execSync(`javac -J-Xms16m -J-Xmx128m ${filesToCompile}`, { cwd: runDir, timeout: 12000, stdio: ['pipe', 'pipe', 'pipe'] });
 
-        const execOutput = execSync(`java -Duser.language=en -Duser.country=US -Dfile.encoding=UTF-8 Main < input.txt`, {
+        const execOutput = execSync(`java -Xms16m -Xmx64m -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Duser.language=en -Duser.country=US -Dfile.encoding=UTF-8 Main < input.txt`, {
             cwd: runDir,
-            timeout: 4000,
+            timeout: 6000,
             encoding: 'utf-8',
             stdio: ['pipe', 'pipe', 'pipe'],
             input: inputStr || ''
@@ -104,7 +104,7 @@ function executePythonCode(code, inputStr) {
     try {
         const execOutput = execSync(`python solution.py < input.txt`, {
             cwd: runDir,
-            timeout: 4000,
+            timeout: 6000,
             encoding: 'utf-8',
             env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
             stdio: ['pipe', 'pipe', 'pipe'],
@@ -117,11 +117,7 @@ function executePythonCode(code, inputStr) {
             errorMsg = "Time Limit Exceeded (TLE)";
         } else {
             const stderr = err.stderr ? err.stderr.toString() : (err.stdout ? err.stdout.toString() : err.message);
-            if (stderr.includes("SyntaxError")) {
-                errorMsg = "Error de Sintaxis (Python SyntaxError):\n" + stderr;
-            } else {
-                errorMsg = "Error de Ejecución (Python Runtime Error):\n" + stderr;
-            }
+            errorMsg = "Runtime Error:\n" + stderr;
         }
     } finally {
         try {
@@ -129,45 +125,34 @@ function executePythonCode(code, inputStr) {
         } catch (e) {}
     }
 
-    const duration = Math.max(5, Date.now() - startTime);
+    const duration = Math.max(8, Date.now() - startTime);
 
     return {
         output,
         timeMs: duration,
-        memoryMB: parseFloat((8 + Math.random() * 2).toFixed(1)),
+        memoryMB: parseFloat((12 + Math.random() * 2).toFixed(1)),
         error: errorMsg
     };
 }
 
-function isPythonSubmission(code, problem = null) {
-    if (problem && (problem.language === 'python' || (problem.category && problem.category.includes('PYTHON')) || (problem.category && problem.category.includes('EDITOR')))) {
-        return true;
-    }
-    if (!code) return false;
-    if (code.includes('print(') || code.includes('import sys') || code.includes('input(') || code.includes('def ')) {
-        return true;
-    }
-    if (!code.includes('class Main') && !code.includes('public class')) {
-        return true;
-    }
+function isPythonSubmission(code, problem) {
+    if (problem && problem.language === 'python') return true;
+    if (code && (code.includes('def ') || code.includes('print(') || code.includes('import sys'))) return true;
     return false;
 }
 
 export class RunCodeUseCase {
     static execute(payload) {
         db.load();
-        const validation = SubmissionValidator.validateRun(payload);
+        const validation = SubmissionValidator.validateRunCode(payload);
         if (!validation.isValid) {
-            return { error: validation.errors.join(' ') };
+            return { output: '', timeMs: 0, memoryMB: 0, error: validation.errors.join('\n') };
         }
 
-        let prob = null;
+        const prob = db.getProblemById(payload.problemId);
         let auxFile = null;
-        if (payload.problemId) {
-            prob = db.getProblemById(payload.problemId);
-            if (prob && prob.auxiliaryFilename && prob.auxiliaryCode) {
-                auxFile = { filename: prob.auxiliaryFilename, code: prob.auxiliaryCode };
-            }
+        if (prob && prob.auxiliaryFilename && prob.auxiliaryCode) {
+            auxFile = { filename: prob.auxiliaryFilename, code: prob.auxiliaryCode };
         }
         if (!auxFile && payload.auxiliaryCode && payload.auxiliaryFilename) {
             auxFile = { filename: payload.auxiliaryFilename, code: payload.auxiliaryCode };
@@ -198,7 +183,7 @@ function executeBatchJavaCode(code, testcaseInputs, auxFile = null) {
 
     try {
         const filesToCompile = fs.readdirSync(runDir).filter(f => f.endsWith('.java')).join(' ');
-        execSync(`javac ${filesToCompile}`, { cwd: runDir, timeout: 8000, stdio: ['pipe', 'pipe', 'pipe'] });
+        execSync(`javac -J-Xms16m -J-Xmx128m ${filesToCompile}`, { cwd: runDir, timeout: 12000, stdio: ['pipe', 'pipe', 'pipe'] });
     } catch (err) {
         const stderr = err.stderr ? err.stderr.toString() : (err.stdout ? err.stdout.toString() : err.message);
         try { fs.rmSync(runDir, { recursive: true, force: true }); } catch (e) {}
@@ -221,9 +206,9 @@ function executeBatchJavaCode(code, testcaseInputs, auxFile = null) {
         let errorMsg = null;
 
         try {
-            const execOutput = execSync(`java -Duser.language=en -Duser.country=US -Dfile.encoding=UTF-8 Main < input.txt`, {
+            const execOutput = execSync(`java -Xms16m -Xmx64m -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Duser.language=en -Duser.country=US -Dfile.encoding=UTF-8 Main < input.txt`, {
                 cwd: runDir,
-                timeout: 3000,
+                timeout: 6000,
                 encoding: 'utf-8',
                 stdio: ['pipe', 'pipe', 'pipe'],
                 input: inputStr || ''
