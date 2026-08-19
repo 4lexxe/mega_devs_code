@@ -42,4 +42,8 @@ export class SubmissionValidator {
             errors
         };
     }
+
+    static validateRunCode(payload) {
+        return this.validateRun(payload);
+    }
 }
