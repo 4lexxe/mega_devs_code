@@ -62,11 +62,14 @@ function executeJavaCode(code, inputStr, auxFile = null) {
         if (err.code === 'ETIMEDOUT') {
             errorMsg = "Time Limit Exceeded (TLE)";
         } else {
-            const stderr = err.stderr ? err.stderr.toString() : (err.stdout ? err.stdout.toString() : err.message);
-            if (stderr.includes("error:") || stderr.includes("Error")) {
-                errorMsg = "Compilation / Syntax Error:\n" + stderr;
+            const stderr = err.stderr ? err.stderr.toString().trim() : '';
+            const stdout = err.stdout ? err.stdout.toString() : '';
+            if (stderr) {
+                errorMsg = stderr.includes("error:") ? ("Compilation / Syntax Error:\n" + stderr) : ("Runtime Error:\n" + stderr);
+            } else if (err.status !== 0 && !stdout) {
+                errorMsg = "Runtime Error:\n" + (err.message || "Exited with code " + err.status);
             } else {
-                errorMsg = "Runtime Error:\n" + stderr;
+                output = stdout;
             }
         }
     } finally {
@@ -116,8 +119,15 @@ function executePythonCode(code, inputStr) {
         if (err.code === 'ETIMEDOUT') {
             errorMsg = "Time Limit Exceeded (TLE)";
         } else {
-            const stderr = err.stderr ? err.stderr.toString() : (err.stdout ? err.stdout.toString() : err.message);
-            errorMsg = "Runtime Error:\n" + stderr;
+            const stderr = err.stderr ? err.stderr.toString().trim() : '';
+            const stdout = err.stdout ? err.stdout.toString() : '';
+            if (stderr) {
+                errorMsg = "Runtime Error:\n" + stderr;
+            } else if (err.status !== 0 && !stdout) {
+                errorMsg = "Runtime Error:\n" + (err.message || "Exited with code " + err.status);
+            } else {
+                output = stdout;
+            }
         }
     } finally {
         try {
@@ -218,8 +228,15 @@ function executeBatchJavaCode(code, testcaseInputs, auxFile = null) {
             if (err.code === 'ETIMEDOUT') {
                 errorMsg = "Time Limit Exceeded (TLE)";
             } else {
-                const stderr = err.stderr ? err.stderr.toString() : (err.stdout ? err.stdout.toString() : err.message);
-                errorMsg = "Runtime Error:\n" + stderr;
+                const stderr = err.stderr ? err.stderr.toString().trim() : '';
+                const stdout = err.stdout ? err.stdout.toString() : '';
+                if (stderr) {
+                    errorMsg = "Runtime Error:\n" + stderr;
+                } else if (err.status !== 0 && !stdout) {
+                    errorMsg = "Runtime Error:\n" + (err.message || "Exited with code " + err.status);
+                } else {
+                    output = stdout;
+                }
             }
         }
 
