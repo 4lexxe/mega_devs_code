@@ -181,6 +181,77 @@ export class RunCodeUseCase {
     }
 }
 
+function executeBatchJavaCode(code, testcaseInputs, auxFile = null) {
+    const runId = 'run_batch_' + Math.random().toString(36).substring(2, 9);
+    const runDir = path.join(TEMP_DIR, runId);
+    fs.mkdirSync(runDir, { recursive: true });
+
+    const javaFilePath = path.join(runDir, 'Main.java');
+    let cleanCode = code.replace(/^\s*package\s+[\w.]+;\s*/m, '');
+    fs.writeFileSync(javaFilePath, cleanCode, 'utf-8');
+
+    if (auxFile && auxFile.filename && auxFile.code) {
+        const auxPath = path.join(runDir, auxFile.filename);
+        let cleanAux = auxFile.code.replace(/^\s*package\s+[\w.]+;\s*/m, '');
+        fs.writeFileSync(auxPath, cleanAux, 'utf-8');
+    }
+
+    try {
+        const filesToCompile = fs.readdirSync(runDir).filter(f => f.endsWith('.java')).join(' ');
+        execSync(`javac ${filesToCompile}`, { cwd: runDir, timeout: 8000, stdio: ['pipe', 'pipe', 'pipe'] });
+    } catch (err) {
+        const stderr = err.stderr ? err.stderr.toString() : (err.stdout ? err.stdout.toString() : err.message);
+        try { fs.rmSync(runDir, { recursive: true, force: true }); } catch (e) {}
+        return testcaseInputs.map(() => ({
+            output: '',
+            error: "Compilation / Syntax Error:\n" + stderr,
+            timeMs: 0,
+            memoryMB: 0
+        }));
+    }
+
+    const results = [];
+    for (let i = 0; i < testcaseInputs.length; i++) {
+        const inputStr = testcaseInputs[i];
+        const startTime = Date.now();
+        const inputFilePath = path.join(runDir, 'input.txt');
+        fs.writeFileSync(inputFilePath, inputStr || '', 'utf-8');
+
+        let output = '';
+        let errorMsg = null;
+
+        try {
+            const execOutput = execSync(`java -Duser.language=en -Duser.country=US -Dfile.encoding=UTF-8 Main < input.txt`, {
+                cwd: runDir,
+                timeout: 3000,
+                encoding: 'utf-8',
+                stdio: ['pipe', 'pipe', 'pipe'],
+                input: inputStr || ''
+            });
+            output = execOutput;
+        } catch (err) {
+            if (err.code === 'ETIMEDOUT') {
+                errorMsg = "Time Limit Exceeded (TLE)";
+            } else {
+                const stderr = err.stderr ? err.stderr.toString() : (err.stdout ? err.stdout.toString() : err.message);
+                errorMsg = "Runtime Error:\n" + stderr;
+            }
+        }
+
+        const duration = Math.max(8, Date.now() - startTime);
+        results.push({
+            output,
+            error: errorMsg,
+            timeMs: duration,
+            memoryMB: parseFloat((14 + Math.random() * 2).toFixed(1))
+        });
+    }
+
+    try { fs.rmSync(runDir, { recursive: true, force: true }); } catch (e) {}
+
+    return results;
+}
+
 export class SubmitSolutionUseCase {
     static execute(payload) {
         db.load();
@@ -206,9 +277,12 @@ export class SubmitSolutionUseCase {
         let passedCases = 0, totalTime = 0, maxMemory = 0;
         let caseResults = [], firstFail = null;
 
+        const inputs = testcases.map(tc => tc.input);
+        const execResults = isPy ? inputs.map(inp => executePythonCode(payload.code, inp)) : executeBatchJavaCode(payload.code, inputs, auxFile);
+
         for (let i = 0; i < testcases.length; i++) {
             const tc = testcases[i];
-            const exec = isPy ? executePythonCode(payload.code, tc.input) : executeJavaCode(payload.code, tc.input, auxFile);
+            const exec = execResults[i];
 
             totalTime += exec.timeMs;
             maxMemory = Math.max(maxMemory, exec.memoryMB);
