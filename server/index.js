@@ -17,14 +17,17 @@ app.use(express.json());
 // Mount API routes
 app.use('/api', apiRoutes);
 
+// Fallback 404 para rutas de API no encontradas
+app.use('/api/*', (req, res) => {
+    res.status(404).json({ error: 'Ruta API no encontrada' });
+});
+
 // Serve static frontend in production if dist/ folder exists
 const distPath = path.join(__dirname, '../dist');
 if (fs.existsSync(distPath)) {
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
-        if (!req.path.startsWith('/api')) {
-            res.sendFile(path.join(distPath, 'index.html'));
-        }
+        res.sendFile(path.join(distPath, 'index.html'));
     });
 }
 
