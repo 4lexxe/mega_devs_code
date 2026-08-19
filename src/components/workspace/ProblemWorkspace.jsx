@@ -104,9 +104,19 @@ export const ProblemWorkspace = ({ problem, onBack, onRunCode, onSubmitCode, eva
                         <h2 className="workspace-problem-title">{problem.id} - {problem.title}</h2>
                         <span className={`badge-diff ${problem.difficulty}`}>{problem.difficulty}</span>
                     </div>
-                    <div className="workspace-lang-badge" style={{ color: isPythonProblem ? '#00f0ff' : '#f59e0b' }}>
-                        <i className={isPythonProblem ? "icon-code" : "icon-doc-text"} />
-                        <span>{isPythonProblem ? 'Python 3' : 'Java 17'}</span>
+                    <div className="workspace-header-actions">
+                        <div className="workspace-lang-badge" style={{ color: isPythonProblem ? '#00f0ff' : '#f59e0b' }}>
+                            <i className={isPythonProblem ? "icon-code" : "icon-doc-text"} />
+                            <span>{isPythonProblem ? 'Python 3' : 'Java 17'}</span>
+                        </div>
+                        <button className="btn-devs btn-devs-secondary" onClick={handleRunCustom} title="Ejecutar prueba">
+                            <i className="icon-play" />
+                            <span className="btn-text-responsive">Ejecutar</span>
+                        </button>
+                        <button className="btn-devs btn-devs-primary" onClick={handleSubmitSolution} disabled={isEvaluating} title="Enviar solución al juez">
+                            <i className="icon-ok-circled" />
+                            <span>{isEvaluating ? 'Evaluando...' : 'Enviar'}</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -207,6 +217,19 @@ export const ProblemWorkspace = ({ problem, onBack, onRunCode, onSubmitCode, eva
                                             </div>
                                         ))}
                                     </div>
+
+                                    {isMobile && (
+                                        <div style={{ marginTop: '1.5rem', padding: '0.8rem', background: 'var(--bg-surface-elevated)', borderRadius: '8px', border: '1px solid var(--border-color)', textAlign: 'center' }}>
+                                            <button
+                                                className="btn-devs btn-devs-primary"
+                                                onClick={() => setMobilePanelTab('editor')}
+                                                style={{ width: '100%', padding: '0.65rem 1rem', fontSize: '0.88rem', fontWeight: 700 }}
+                                            >
+                                                <i className="icon-code" />
+                                                <span>Ir al Editor y Enviar Solución</span>
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             )}
 
